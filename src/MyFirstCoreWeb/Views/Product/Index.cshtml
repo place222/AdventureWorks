@@ -1,0 +1,35 @@
+﻿@model MyFirstCoreWeb.Models.ProductViewModels.IndexViewModel
+
+
+<div class="container">
+    <div class="col-md-3">
+        <ul>
+            @foreach (var item in Model.CategoryTreeViewModels)
+            {
+                <li><a href="/Product/Index/@item.ProductCategoryID">@item.Name</a></li>
+                <ul>
+                    @foreach (var c in item.Children)
+                    {
+                        <a href="/Product/Index/@c.ProductSubCategoryID">@c.Name</a>
+                    }
+                </ul>
+            }
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="container">
+            @foreach (var item in Model.ProductWithPhotoModels)
+            {
+                <a href="/Product/Detail/@item.ProductID">
+                    <div class="col-md-3">
+                        <div class="text-info">@item.Name</div>
+                        <div>
+                            <img src="data:image/gif;base64,@item.ThumbNailPhoto" />
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+

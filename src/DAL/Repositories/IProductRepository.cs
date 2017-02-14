@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.DomainModels;
+using DAL.Entities.Production;
 
 namespace DAL.Repositories
 {
@@ -10,6 +12,12 @@ namespace DAL.Repositories
     /// </summary>
     public interface IProductRepository
     {
+        IEnumerable<ProductCategory> GetProductCategories();
+        IEnumerable<ProductSubcategory> GetProductSubcategoriesByCategoryId(int id);
+        IEnumerable<UnionCategoryModel> GetCategoryTreeModels();
+        IEnumerable<Product> GetProductsBySubCategoryId(int id);
+        IEnumerable<ProductWithPhotoModel> GetProductsBySubCategoryIdWithPhoto(int id);
 
+        Product GetProductById(int id);
     }
 }

@@ -2,6 +2,7 @@
   "userSecretsId": "aspnet-MyFirstCoreWeb-9fff6df7-5d4f-40e8-b729-5ba9640a1102",
 
   "dependencies": {
+    "DAL": "1.0.0-*",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Authentication.Facebook": "1.0.1",
     "Microsoft.AspNetCore.Authentication.MicrosoftAccount": "1.0.1",
@@ -59,7 +60,18 @@
   },
 
   "frameworks": {
-    "net461": { }
+    "net461": {},
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.1",
+          "type": "platform"
+        }
+      },
+      "imports": [
+        "net461"
+      ]
+    }
   },
 
   "buildOptions": {

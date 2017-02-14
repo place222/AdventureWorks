@@ -23,11 +23,11 @@ namespace DAL.Entities.Production
         /// </summary>
         public string ProductNumber { get; set; }
         /// <summary>
-        /// false:商品已卖 true:商品内部制造
+        /// false:产品是采购的 true:商品内部制造的
         /// </summary>
         public bool MakeFlag { get; set; }
         /// <summary>
-        /// false:不可卖 true:可卖
+        /// false:不畅销 true:畅销
         /// </summary>
         public bool FinishedGoodsFlag { get; set; }
         /// <summary>
