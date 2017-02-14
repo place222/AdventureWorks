@@ -11,6 +11,7 @@ namespace DAL.Test
     {
         public ProductRepositoryTest()
         {
+
         }
 
         [Fact]
@@ -24,6 +25,7 @@ namespace DAL.Test
             Assert.NotEmpty(cate);
 
         }
+
         [Fact]
         public void ProductSubCategoryTest()
         {
@@ -34,6 +36,7 @@ namespace DAL.Test
             Assert.NotEmpty(cate);
             Assert.Equal(3, cate.Count());
         }
+
         [Fact]
         public void GetProductsBySubCategoryIdTest()
         {
