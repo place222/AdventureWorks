@@ -6,18 +6,24 @@ using System.Threading.Tasks;
 using Dapper;
 using DAL.DomainModels;
 using DAL.Entities.Production;
+using Microsoft.Extensions.Options;
+using MyFirstCoreWeb.Models;
 
 namespace DAL.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly string connstr =
-            "Server=LIUYANG;Database=AdventureWorks2012;Trusted_Connection=True;MultipleActiveResultSets=true";
+        private readonly IOptions<ConnectionOptions> _connectionOptions;
+
+        public ProductRepository(IOptions<ConnectionOptions> connectionOptions)
+        {
+            _connectionOptions = connectionOptions;
+        }
 
         public IEnumerable<ProductCategory> GetProductCategories()
         {
             IEnumerable<ProductCategory> categories = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 categories = conn.Query<ProductCategory>("SELECT * FROM Production.ProductCategory");
             }
@@ -27,7 +33,7 @@ namespace DAL.Repositories
         public IEnumerable<ProductSubcategory> GetProductSubcategoriesByCategoryId(int id)
         {
             IEnumerable<ProductSubcategory> categories = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 categories = conn.Query<ProductSubcategory>("SELECT * FROM Production.ProductSubcategory WHERE ProductCategoryID = @id", new { id = id });
             }
@@ -37,7 +43,7 @@ namespace DAL.Repositories
         public IEnumerable<UnionCategoryModel> GetCategoryTreeModels()
         {
             IEnumerable<UnionCategoryModel> categories = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 categories = conn.Query<UnionCategoryModel>(@"SELECT ProductCategoryID,0 AS ProductSubcategoryID,Name FROM Production.ProductCategory UNION ALL SELECT ProductCategoryID, ProductSubcategoryID, Name FROM Production.ProductSubcategory");
             }
@@ -47,7 +53,7 @@ namespace DAL.Repositories
         public IEnumerable<Product> GetProductsBySubCategoryId(int id)
         {
             IEnumerable<Product> categories = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 categories = conn.Query<Product>("SELECT * FROM Production.Product WHERE ProductSubcategoryID = @id", new { id = id });
             }
@@ -57,7 +63,7 @@ namespace DAL.Repositories
         public IEnumerable<ProductWithPhotoModel> GetProductsBySubCategoryIdWithPhoto(int id)
         {
             IEnumerable<ProductWithPhotoModel> categories = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 categories = conn.Query<ProductWithPhotoModel>(@"SELECT Product.ProductID,
        Name,
@@ -96,7 +102,7 @@ JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhot
         public Product GetProductById(int id)
         {
             Product product = null;
-            using (var conn = new SqlConnection(connstr))
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
                 product = conn.QueryFirstOrDefault<Product>("SELECT * FROM Production.Product WHERE ProductID = @id", new { id = id });
             }
