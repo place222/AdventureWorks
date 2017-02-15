@@ -18,8 +18,8 @@ namespace DAL.Identity
         IUserPasswordStore<User>,
         IUserPhoneNumberStore<User>,
         IUserTwoFactorStore<User>,
-        IUserLoginStore<User>,
-        IUserClaimStore<User>
+        IUserLoginStore<User>
+        //IUserClaimStore<User>
     {
         public UserStore(IOptions<ConnectionOptions> connectionOptions)
         {
@@ -309,22 +309,34 @@ namespace DAL.Identity
         #region userloginstore
         public Task AddLoginAsync(User user, UserLoginInfo login, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return Task.FromResult(0);
         }
 
         public Task<IList<UserLoginInfo>> GetLoginsAsync(User user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+            IList<UserLoginInfo> list = new List<UserLoginInfo>();
+            return Task.FromResult(list);
         }
 
         public Task<User> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return Task.FromResult(new User());
         }
 
         public Task RemoveLoginAsync(User user, string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            cancellationToken.ThrowIfCancellationRequested();
+            ThrowIfDisposed();
+
+            return Task.FromResult(0);
         }
         #endregion userloginstore
 
