@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Dapper;
+using DAL.DomainModels;
 using DAL.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -93,7 +95,19 @@ namespace MyFirstCoreWeb.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            var model = new RegisterViewModel();
+            model.PersonTypes = new List<SelectListItem>();
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.商店联系人), Value = "SC" });
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.个人零售客户), Value = "IN" });
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.销售人员), Value = "SP" });
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.非销售员工), Value = "EM" });
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.供应商联系人), Value = "VC" });
+            model.PersonTypes.AsList().Add(new SelectListItem() { Text = nameof(PersonTypeEnum.其他), Value = "GC" });
+            model.EmailPromotions = new List<SelectListItem>();
+            model.EmailPromotions.AsList().Add(new SelectListItem() { Text = nameof(EmailPromotionEnum.不接受邮件信息), Value = "0" });
+            model.EmailPromotions.AsList().Add(new SelectListItem() { Text = nameof(EmailPromotionEnum.接受邮件信息), Value = "1" });
+            model.EmailPromotions.AsList().Add(new SelectListItem() { Text = nameof(EmailPromotionEnum.不接受所有), Value = "2" });
+            return View(model);
         }
 
         //
@@ -106,7 +120,7 @@ namespace MyFirstCoreWeb.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new User {  Email = model.Email,FirstName = model.FirstName,MiddleName = model.MiddleName,LastName = model.LastName,Suffix = model.Suffix,Title = model.Title,NameStyle = model.NameStyle};
+                var user = new User {  Email = model.Email,PhoneNumber = model.PhoneNumber,FirstName = model.FirstName,MiddleName = model.MiddleName,LastName = model.LastName,Suffix = model.Suffix,Title = model.Title,NameStyle = model.NameStyle,PersonType = model.PersonType,EmailPromotion = model.EmailPromotion};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -111,12 +111,12 @@ namespace MyFirstCoreWeb
 
             app.UseIdentity();
 
-            app.UseFacebookAuthentication(new FacebookOptions()
-            {
-                AppId = Configuration["Authentication:Facebook:AppId"],
-                AppSecret = Configuration["Authentication:Facebook:AppSecret"],
+            //app.UseFacebookAuthentication(new FacebookOptions()
+            //{
+            //    AppId = Configuration["Authentication:Facebook:AppId"],
+            //    AppSecret = Configuration["Authentication:Facebook:AppSecret"],
                 
-            });
+            //});
             //app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
             //{
             //    ClientId = Configuration["Authentication:Microsoft:ClientId"],

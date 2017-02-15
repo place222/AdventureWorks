@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.DomainModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MyFirstCoreWeb.Models.AccountViewModels
 {
@@ -36,5 +38,14 @@ namespace MyFirstCoreWeb.Models.AccountViewModels
         [Display(Name = "确认密码")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public string PersonType { get; set; }
+        public int EmailPromotion { get; set; }
+
+        [Display(Name = "行动电话")]
+        public string PhoneNumber { get; set; }
+        [Display(Name = "人员类型")]
+        public IEnumerable<SelectListItem> PersonTypes { get; set; }
+        [Display(Name = "邮件设定")]
+        public IEnumerable<SelectListItem> EmailPromotions { get; set; }
     }
 }

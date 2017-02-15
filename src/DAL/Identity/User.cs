@@ -16,5 +16,8 @@ namespace DAL.Identity
         public string LastName { get; set; }
         public string Title { get; set; }
         public string Suffix { get; set; }
+        public string PersonType { get; set; }
+        public int EmailPromotion { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }
