@@ -1,13 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using DAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyFirstCoreWeb.Models.EmployeeViewModels;
 
 namespace MyFirstCoreWeb.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -20,8 +23,6 @@ namespace MyFirstCoreWeb.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var model = await _employeeRepository.GetEmployeeDetailById(id);
-            
-
 
             var vm = new EmployeeDetailViewModel();
             vm.BirthDate = model.BirthDate;
@@ -32,7 +33,10 @@ namespace MyFirstCoreWeb.Controllers
             vm.NationalIDNumber = model.NationalIDNumber;
             return View(vm);
         }
-
-
+        [AllowAnonymous]
+        public IActionResult Test()
+        {
+            return View();
+        }
     }
 }

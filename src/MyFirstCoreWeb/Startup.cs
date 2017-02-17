@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -89,6 +90,26 @@ namespace MyFirstCoreWeb
             //服务
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+            //identity的配置
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 6;
+            });
+            //mvc配置
+            services.Configure<MvcOptions>(options =>
+            {
+            });
+            //mvc视图配置
+            services.Configure<MvcViewOptions>(options =>
+            {
+                
+            });
+            //授权配置
+            services.AddAuthorization(optioins =>
+            {
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,7 +137,7 @@ namespace MyFirstCoreWeb
             //{
             //    AppId = Configuration["Authentication:Facebook:AppId"],
             //    AppSecret = Configuration["Authentication:Facebook:AppSecret"],
-                
+
             //});
             //app.UseMicrosoftAccountAuthentication(new MicrosoftAccountOptions()
             //{
