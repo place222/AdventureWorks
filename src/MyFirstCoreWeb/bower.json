@@ -8,6 +8,8 @@
     "jquery-validation-unobtrusive": "3.2.6",
     "font-awesome": "4.6.1",
     "iCheck": "1.0.2",
-    "jquery-ui": "1.11.4"
+    "jquery-ui": "1.11.4",
+    "admin-lte": "2.3.11",
+    "ionicons": "2.0.1" 
   }
 }

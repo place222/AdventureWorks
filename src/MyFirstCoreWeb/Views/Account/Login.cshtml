@@ -23,7 +23,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="~/lib/iCheck/skins/square/blue.css">
 
@@ -41,7 +41,7 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">登入开始会话吧!</p>
 
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <div class="form-group has-feedback">
@@ -62,13 +62,13 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登 入</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
             <div class="social-auth-links text-center">
-                <p>- OR -</p>
+                <p>- 或 -</p>
                 @{
 
                     var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();

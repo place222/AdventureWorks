@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.Identity;
+using DAL.Options;
 using DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -90,6 +91,7 @@ namespace MyFirstCoreWeb
             //服务
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
 
             //identity的配置
             services.Configure<IdentityOptions>(options =>
@@ -110,6 +112,8 @@ namespace MyFirstCoreWeb
             {
 
             });
+            //短信
+            services.Configure<AuthMessageSMSSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

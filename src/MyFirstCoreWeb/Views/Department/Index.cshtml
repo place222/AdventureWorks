@@ -1,0 +1,110 @@
+﻿@model MyFirstCoreWeb.Models.DepartmentViewModels.IndexViewModel
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">部门信息</a></li>
+        <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
+        <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+        @*<li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>*@
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Data Table With Full Features</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        @*<thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>组</th>
+                            <th>更新日期</th>
+                            <th>更新</th>
+                            <th>删除</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.Departments)
+                        {
+                            <tr>
+                                <td>@item.DepartmentID</td>
+                                <td>@item.Name</td>
+                                <td>@item.GroupName</td>
+                                <td>@item.ModifiedDate</td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal">更新</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#myModal">删除</a></td>
+                            </tr>
+                        }
+                        </tbody>*@
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2">
+            The European languages are members of the same family. Their separate existence is a myth.
+            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+            new common language would be desirable: one could refuse to pay expensive translators. To
+            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+            words. If several languages coalesce, the grammar of the resulting language is more simple
+            and regular than that of the individual languages.
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_3">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+    <!-- /.tab-content -->
+</div>
+<!-- nav-tabs-custom -->
+<div class="example-modal">
+    <div class="modal" id="myModal" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+@section Scripts{
+    <script>
+        $(function () {
+            var dt = $("#example1").DataTable({
+                ajax: {
+                    type: 'POST',
+                    url: '/Department/Index',
+                    data: { pagesize: 10, pagenumber: 1 }
+                },
+                
+            });
+
+        });
+    </script>
+}

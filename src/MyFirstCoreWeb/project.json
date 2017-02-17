@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-MyFirstCoreWeb-9fff6df7-5d4f-40e8-b729-5ba9640a1102",
 
   "dependencies": {
@@ -42,7 +42,9 @@
     "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "Sendgrid": "9.0.10",
+    "Twilio": "4.7.2"
   },
 
   "tools": {
