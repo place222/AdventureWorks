@@ -20,6 +20,7 @@ using Microsoft.Extensions.Options;
 using MyFirstCoreWeb.Data;
 using MyFirstCoreWeb.Models;
 using MyFirstCoreWeb.Services;
+using BLL;
 
 namespace MyFirstCoreWeb
 {
@@ -87,11 +88,9 @@ namespace MyFirstCoreWeb
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-           
+
             //服务
-            services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddBLLServices();
 
             //identity的配置
             services.Configure<IdentityOptions>(options =>

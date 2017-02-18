@@ -2,7 +2,7 @@
   "userSecretsId": "aspnet-MyFirstCoreWeb-9fff6df7-5d4f-40e8-b729-5ba9640a1102",
 
   "dependencies": {
-    "DAL": "1.0.0-*",
+    "BLL": "1.0.0-*",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Authentication.Facebook": "1.0.1",
     "Microsoft.AspNetCore.Authentication.MicrosoftAccount": "1.0.1",
@@ -43,8 +43,7 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Sendgrid": "9.0.10",
-    "Twilio": "4.7.2"
+    "Sendgrid": "9.0.10"
   },
 
   "tools": {
@@ -71,7 +70,8 @@
         }
       },
       "imports": [
-        "net461"
+        "dotnet5.6",
+        "portable-net45+win8"
       ]
     }
   },

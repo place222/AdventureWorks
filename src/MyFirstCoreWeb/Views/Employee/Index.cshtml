@@ -1,38 +1,154 @@
-﻿@model MyFirstCoreWeb.Models.EmployeeViewModels.EmployeeDetailViewModel
-<div class="form-group">
-    <label asp-for="BusinessEntityID" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.BusinessEntityID</label>
+﻿<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">部门信息</a></li>
+        <li><a href="#tab_2" data-toggle="tab">组织机构</a></li>
+        <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+        @*<li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>*@
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Data Table With Full Features</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>部门编号</td>
+                                <td>部门名称</td>
+                                <td>组别名称</td>
+                                <td>部门编号</td>
+                                <td>更新</td>
+                                <td>删除</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2">
+            The European languages are members of the same family. Their separate existence is a myth.
+            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+            new common language would be desirable: one could refuse to pay expensive translators. To
+            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+            words. If several languages coalesce, the grammar of the resulting language is more simple
+            and regular than that of the individual languages.
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_3">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        <!-- /.tab-pane -->
     </div>
+    <!-- /.tab-content -->
 </div>
-<div class="form-group">
-    <label asp-for="NationalIDNumber" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.NationalIDNumber</label>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="LoginID" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.LoginID</label>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="JobTitle" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.JobTitle</label>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="BirthDate" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.BirthDate</label>
-    </div>
-</div>
-<div class="form-group">
-    <label asp-for="MaritalStatus" class="col-md-2 control-label"></label>
-    <div class="col-md-10">
-        <label class="col-md-10 control-label">@Model.MaritalStatus</label>
-    </div>
-</div>
+<!-- nav-tabs-custom -->
+<div class="example-modal">
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form class="form-horizontal">
 
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Default Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">组</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="inputPassword3">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+                                        <option>option 4</option>
+                                        <option>option 5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+@section Scripts{
+    <script>
+        $(function () {
+            var dt = $("#example1")
+                .DataTable({
+                    ajax: {
+                        type: 'POST',
+                        url: 'http://localhost:17799/api/Department/GetEmployees',
+                        data: function (d) {
+                            console.log('datatable生成的请求参数');
+                            console.log(d);
+                            var request = {};
+                            request.start = d.start;
+                            request.length = d.length;
+                            return request;
+                        },
+                        dataSrc: function (data) { //只是处理显示的data数据
+                            return data.data;
+                        }
+                    },
+                    serverSide: true,
+                    columns: [
+                        { data: "id" },
+                        { data: "hireDate" },
+                        { data: 'currentFlag' },
+                        { data: 'name' },
+                        {
+                            data: "id",
+                            render: function (data, type, row, meta) {
+                                var a = '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' + data + '">更新</a>';
+                                return a;
+                            }
+                        },
+                        { defaultContent: '<a href="#">删除</a>' }
+                    ]
+                });
+        });
+
+        $(function () {
+            $('#myModal')
+                .on('show.bs.modal',
+                    function (event) {
+                        //alert($(event.relatedTarget).data('whatever'));
+                    });
+        });
+
+    </script>
+}

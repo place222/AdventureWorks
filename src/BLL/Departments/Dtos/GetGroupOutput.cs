@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace BLL.Departments.Dtos
 {
-    public class Class1
+    public class GetGroupOutput
     {
-        public Class1()
-        {
-
-        }
     }
 }

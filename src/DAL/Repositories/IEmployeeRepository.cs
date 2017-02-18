@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.DomainModels;
+using DAL.DomainModels.Employees;
+using DAL.Entities.HumanResources;
 using DAL.Identity;
 
 namespace DAL.Repositories
@@ -13,6 +15,6 @@ namespace DAL.Repositories
 
         Task<EmployeeDetail> GetEmployeeDetailById(int id);
 
-
+        Task<PageOfEmployees> GetEmployeesByPageAsync(int start, int length);
     }
 }

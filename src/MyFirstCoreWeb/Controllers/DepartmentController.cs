@@ -26,14 +26,16 @@ namespace MyFirstCoreWeb.Controllers
             vm.Departments = await
                 _departmentRepository.GetDepartmentsByPage(new BasePageInput() { PageNumber = 1, PageSize = 10 });
             return View(vm);
-            
+
         }
         //TODO::¸Ä³Éwebapi
         [HttpPost]
         public async Task<IActionResult> Index(BasePageInput input)
         {
             var datas = await _departmentRepository.GetDepartmentsByPage(input);
-            return Json(new {draw=1,recordsTotal=100,recordsFiltered=100,data=datas});
+            return Json(new { iTotalRecords = 16, iTotalDisplayRecords = 16, data = datas });
         }
+
+
     }
 }
