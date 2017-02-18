@@ -17,11 +17,11 @@ namespace BLL.Employees
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<GetEmployeesByPageOutput> GetEmployeesByPageAsync(GetEmployeesByPageInput input)
+        public async Task<BasePageDto<EmployeeDto>> GetEmployeesByPageAsync(BasePageInput input)
         {
             var result = await _employeeRepository.GetEmployeesByPageAsync(input.Start, input.Length);
 
-            return Mapper.Map<GetEmployeesByPageOutput>(result);
+            return Mapper.Map<BasePageDto<EmployeeDto>>(result);
         }
     }
 }

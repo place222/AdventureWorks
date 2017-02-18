@@ -8,7 +8,7 @@ namespace DAL.DomainModels.Employees
     /// <summary>
     /// 员工列表的数据
     /// </summary>
-    public class PageOfEmployee
+    public class EmployeeDomain
     {
         /// <summary>
         /// 编号

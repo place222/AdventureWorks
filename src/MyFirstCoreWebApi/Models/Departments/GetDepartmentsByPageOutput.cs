@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BLL.Departments.Dtos
+namespace MyFirstCoreWebApi.Models.Departments
 {
-    public class GetGroupOutput
+    public class GetDepartmentsByPageOutput
     {
-
     }
 }

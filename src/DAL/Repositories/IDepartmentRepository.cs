@@ -9,6 +9,6 @@ namespace DAL.Repositories
 {
     public interface IDepartmentRepository
     {
-        Task<IEnumerable<Department>> GetDepartmentsByPage(IPageInput input);
+        Task<PageDomain<Department>> GetDepartmentsByPageAsync(int start, int length);
     }
 }

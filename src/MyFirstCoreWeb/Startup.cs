@@ -21,6 +21,7 @@ using MyFirstCoreWeb.Data;
 using MyFirstCoreWeb.Models;
 using MyFirstCoreWeb.Services;
 using BLL;
+using NLog.Extensions.Logging;
 
 namespace MyFirstCoreWeb
 {
@@ -113,6 +114,7 @@ namespace MyFirstCoreWeb
             });
             //短信
             services.Configure<AuthMessageSMSSenderOptions>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -120,7 +122,8 @@ namespace MyFirstCoreWeb
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog("nlog.config");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

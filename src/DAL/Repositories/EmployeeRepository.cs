@@ -34,26 +34,9 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<EmployeeDetail> GetEmployeeDetailById(int id)
+        public async Task<PageDomain<EmployeeDomain>> GetEmployeesByPageAsync(int start, int length)
         {
-            var sql = @"SELECT BirthDate ,
-                               BusinessEntityID ,
-                               JobTitle ,
-                               LoginID ,
-                               MaritalStatus ,
-                               NationalIDNumber
-                        FROM HumanResources.Employee WHERE BusinessEntityID = @id ";
-            var p = new DynamicParameters();
-            p.Add("@id", id, DbType.Int32);
-            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
-            {
-                return await conn.QueryFirstOrDefaultAsync<EmployeeDetail>(sql, p);
-            }
-        }
-
-        public async Task<PageOfEmployees> GetEmployeesByPageAsync(int start, int length)
-        {
-            var model = new PageOfEmployees();
+            var model = new PageDomain<EmployeeDomain>();
 
             var sql = @"SELECT 
                         HumanResources.Employee.BusinessEntityID AS Id,
@@ -73,7 +56,7 @@ namespace DAL.Repositories
             {
                 using (var multi = await conn.QueryMultipleAsync(sql, p))
                 {
-                    model.Employees = (await multi.ReadAsync<PageOfEmployee>()).ToList();
+                    model.Data = (await multi.ReadAsync<EmployeeDomain>()).ToList();
                     model.TotalRecord = await multi.ReadFirstOrDefaultAsync<int>();
                 }
             }

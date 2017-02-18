@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DAL.DomainModels
 {
-    public interface IPageInput
+    public class PageDomain<T>
     {
-        int PageNumber { get; set; }
-        int PageSize { get; set; }
+        public int TotalRecord { get; set; }
+        public IEnumerable<T> Data { get; set; }
     }
 }

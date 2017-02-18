@@ -7,8 +7,11 @@ using BLL.Employees.Dtos;
 using DAL.DomainModels.Employees;
 using Microsoft.Extensions.DependencyInjection;
 using BLL.Departments;
+using BLL.Departments.Dtos;
 using BLL.Employees;
 using DAL;
+using DAL.DomainModels;
+using DAL.Entities.HumanResources;
 
 namespace BLL
 {
@@ -27,11 +30,11 @@ namespace BLL
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<PageOfEmployee, EmployeeDto>();
-                config.CreateMap<PageOfEmployees, GetEmployeesByPageOutput>()
+                config.CreateMap<EmployeeDomain, EmployeeDto>();
+                config.CreateMap<Department, DepartmentDto>();
+                config.CreateMap<PageDomain<Department>, BasePageDto<DepartmentDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.Data, x => x.MapFrom(c => c.Employees));
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
             });
         }
     }

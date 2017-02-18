@@ -18,6 +18,7 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
     "Swashbuckle.AspNetCore": "1.0.0-rc1",
+    "NLog.Extensions.Logging": "1.0.0-*",
     "BLL": "1.0.0-*"
   },
 

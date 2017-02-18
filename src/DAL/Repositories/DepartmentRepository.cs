@@ -20,16 +20,19 @@ namespace DAL.Repositories
         {
             Options = connectionOptions.Value;
         }
-        public async Task<IEnumerable<Department>> GetDepartmentsByPage(IPageInput input)
+        public async Task<PageDomain<Department>> GetDepartmentsByPageAsync(int start, int length)
         {
-            string sql = "SELECT * FROM HumanResources.Department ORDER BY DepartmentID DESC OFFSET @OFFSET ROWS FETCH NEXT @FETCH ROWS ONLY";
+            PageDomain<Department> model = null;
+            string sql = "SELECT * FROM HumanResources.Department ORDER BY DepartmentID DESC OFFSET @OFFSET ROWS FETCH NEXT @FETCH ROWS ONLY;";
             var p = new DynamicParameters();
-            p.Add("@OFFSET", (input.PageNumber - 1) * input.PageSize, DbType.Int32);
-            p.Add("@FETCH", input.PageSize, DbType.Int32);
+            p.Add("@OFFSET", start, DbType.Int32);
+            p.Add("@FETCH", length, DbType.Int32);
             using (var conn = new SqlConnection(Options.AdventureWorkConnection))
             {
-                return await conn.QueryAsync<Department>(sql, p);
+                
             }
+            //TODO::完善
+            return new PageDomain<Department>();
         }
     }
 }

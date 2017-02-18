@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
 using BLL;
 using MyFirstCoreWeb.Models;
+using NLog.Extensions.Logging;
 
 namespace MyFirstCoreWebApi
 {
@@ -57,6 +58,8 @@ namespace MyFirstCoreWebApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog("nlog.config");
 
             if (env.IsDevelopment())
             {

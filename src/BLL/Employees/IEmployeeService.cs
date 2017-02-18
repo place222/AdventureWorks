@@ -5,6 +5,6 @@ namespace BLL.Employees
 {
     public interface IEmployeeService
     {
-        Task<GetEmployeesByPageOutput> GetEmployeesByPageAsync(GetEmployeesByPageInput input);
+        Task<BasePageDto<EmployeeDto>> GetEmployeesByPageAsync(BasePageInput input);
     }
 }
