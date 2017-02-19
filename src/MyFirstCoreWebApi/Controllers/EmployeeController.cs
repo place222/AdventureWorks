@@ -24,22 +24,35 @@ namespace MyFirstCoreWebApi.Controllers
         }
 
 
-        [Route("GetDepartmentsByPage")]
+        [Route("GetEmployeesByPage")]
         [HttpPost]
-        public async Task<BaseOutput<BasePageDto<EmployeeDto>>> GetEmployeesByPage([FromForm]BasePageInput input)
+        public async Task<BasePageDto<EmployeeDto>> GetEmployeesByPage([FromForm]BasePageInput input)
         {
-            var output = new BaseOutput<BasePageDto<EmployeeDto>>();
             try
             {
-                output.Data = await _employeeService.GetEmployeesByPageAsync(input);
+                return await _employeeService.GetEmployeesByPageAsync(input);
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex.Message, ex.StackTrace);
-                output.ErrorCode = 500;
-                output.ErrorMessage = ex.GetBaseException().Message;
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
             }
-            return output;
+        }
+
+        //todo::没有拿取位置数据
+        [Route("GetEmployeeDetailById")]
+        [HttpPost]
+        public async Task<EmployeeDetailDto> GetEmployeeDetailById([FromQuery] int employeeId)
+        {
+            try
+            {
+                return await _employeeService.GetEmployeeDetailByIdAsync(employeeId);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
         }
     }
 

@@ -16,10 +16,11 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <td>部门编号</td>
-                                <td>部门名称</td>
-                                <td>组别名称</td>
-                                <td>部门编号</td>
+                                <td>员工编号</td>
+                                <td>进公司时间</td>
+                                <td>员工状态</td>
+                                <td>姓名</td>
+                                <td>详情</td>
                                 <td>更新</td>
                                 <td>删除</td>
                             </tr>
@@ -111,17 +112,12 @@
                 .DataTable({
                     ajax: {
                         type: 'POST',
-                        url: 'http://localhost:17799/api/Employee/GetEmployees',
+                        url: liuyang + '/api/Employee/GetEmployeesByPage',
                         data: function (d) {
-                            console.log('datatable生成的请求参数');
-                            console.log(d);
-                            var request = {};
-                            request.start = d.start;
-                            request.length = d.length;
-                            return request;
+                            return { start: d.start, length: d.length };
                         },
-                        dataSrc: function (data) { //只是处理显示的data数据
-                            return data.data;
+                        dataSrc: function (json) {
+                            return json.data;
                         }
                     },
                     serverSide: true,
@@ -131,9 +127,20 @@
                         { data: 'currentFlag' },
                         { data: 'name' },
                         {
+                            data:"id",
+                            render:function(data, type, row, meta) {
+                                var a = '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' +
+                                    data +
+                                    '">详情</a>';
+                                return a;
+                            }
+                        },
+                        {
                             data: "id",
                             render: function (data, type, row, meta) {
-                                var a = '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' + data + '">更新</a>';
+                                var a = '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' +
+                                    data +
+                                    '">更新</a>';
                                 return a;
                             }
                         },

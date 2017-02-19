@@ -8,6 +8,7 @@ using Dapper;
 using DAL.DomainModels;
 using DAL.DomainModels.Employees;
 using DAL.Entities.HumanResources;
+using DAL.Entities.Person;
 using DAL.Identity;
 using Microsoft.Extensions.Options;
 using MyFirstCoreWeb.Models;
@@ -58,6 +59,73 @@ namespace DAL.Repositories
                 {
                     model.Data = (await multi.ReadAsync<EmployeeDomain>()).ToList();
                     model.TotalRecord = await multi.ReadFirstOrDefaultAsync<int>();
+                }
+            }
+            return model;
+        }
+
+        public async Task<EmployeeDetailDomain> GetEmployeeDetailByIdAsync(int employeeId)
+        {
+            var model = new EmployeeDetailDomain();
+            var sql = @"SELECT 
+                        PersonType,
+                        FirstName+' '+MiddleName+' '+LastName AS Name,
+                        EmailPromotion,
+                        NationalIDNumber,
+                        LoginID,
+                        JobTitle,
+                        BirthDate,
+                        MaritalStatus,
+                        Gender,
+                        HireDate,
+                        SalariedFlag,
+                        VacationHours,
+                        SickLeaveHours,
+                        CurrentFlag
+                        FROM Person.Person JOIN HumanResources.Employee 
+                        ON Employee.BusinessEntityID = Person.BusinessEntityID 
+                        WHERE Employee.BusinessEntityID = @id;";
+            sql += @"SELECT * FROM Person.EmailAddress WHERE BusinessEntityID=@id;";
+            sql += @"SELECT AddressLine1 ,
+                           AddressLine2 ,
+                           City,
+	                       PostalCode , 
+                           StateProvince.StateProvinceID,
+	                       StateProvinceCode,
+	                       StateProvince.Name AS StateProvinceName,
+	                       IsOnlyStateProvinceFlag,
+	                       TerritoryID,
+	                       AddressType.AddressTypeID,
+                           AddressType.Name AS AddressTypeName,
+	                       CountryRegion.CountryRegionCode,
+	                       CountryRegion.Name AS CountryRegionName
+                    FROM Person.Address 
+                    JOIN Person.BusinessEntityAddress 
+                    ON BusinessEntityAddress.AddressID = Address.AddressID
+                    JOIN Person.AddressType 
+                    ON AddressType.AddressTypeID = BusinessEntityAddress.AddressTypeID
+                    JOIN Person.StateProvince 
+                    ON StateProvince.StateProvinceID = Address.StateProvinceID
+                    JOIN Person.CountryRegion 
+                    ON CountryRegion.CountryRegionCode = StateProvince.CountryRegionCode
+                    WHERE BusinessEntityID = @id;";
+            sql += @"SELECT Name ,
+                            PhoneNumber ,
+                            PersonPhone.PhoneNumberTypeID
+                    FROM Person.PersonPhone JOIN Person.PhoneNumberType 
+                    ON PhoneNumberType.PhoneNumberTypeID = PersonPhone.PhoneNumberTypeID
+                    WHERE BusinessEntityID = @id;";
+            var p = new DynamicParameters();
+            p.Add("@id", employeeId, DbType.Int32);
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
+            {
+                using (var multi = await conn.QueryMultipleAsync(sql, p))
+                {
+                    model.EmployeeInfo = await multi.ReadFirstOrDefaultAsync<EmployeeInfoDomain>();
+                    model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
+                    model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();
+                    //TODO::还有联系方式映射 和 电话
+
                 }
             }
             return model;

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BLL.Departments.Dtos
+namespace DAL.DomainModels.Departments
 {
-    public class GetGroupInput
+    public class GroupDomain
     {
-
+        public string GroupName { get; set; }
     }
 }

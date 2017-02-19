@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyFirstCoreWebApi.Models.Departments
+namespace DAL.DomainModels.Employees
 {
-    public class GetDepartmentsByPageOutput
+    public class EmployeePhoneDomain
     {
     }
 }

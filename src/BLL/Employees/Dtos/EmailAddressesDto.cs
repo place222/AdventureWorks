@@ -3,25 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DAL.Entities.Person
+namespace BLL.Employees.Dtos
 {
-    /// <summary>
-    /// 业务实体联系人关系表
-    /// </summary>
-    public class BusinessEntityContact
+    public class EmailAddressesDto
     {
         /// <summary>
-        /// 业务实体 BusinessEntity.BusinessEntityID
+        /// 业务实体编号
         /// </summary>
         public int BusinessEntityID { get; set; }
         /// <summary>
-        /// 联系人 Person.BusinessEntityID
+        /// 邮件编号
         /// </summary>
-        public int PersonID { get; set; }
+        public int EmailAddressID { get; set; }
         /// <summary>
-        /// 联系方式
+        /// 地址
         /// </summary>
-        public int ContactTypeID { get; set; }
+        public string EmailAddress { get; set; }
         /// <summary>
         /// 更新时间
         /// </summary>

@@ -14,5 +14,6 @@ namespace DAL.Repositories
         Task<bool> IsUserIsEmployee(User user);
 
         Task<PageDomain<EmployeeDomain>> GetEmployeesByPageAsync(int start, int length);
+        Task<EmployeeDetailDomain> GetEmployeeDetailByIdAsync(int employeeId);
     }
 }

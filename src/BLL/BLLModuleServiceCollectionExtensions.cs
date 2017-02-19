@@ -11,7 +11,9 @@ using BLL.Departments.Dtos;
 using BLL.Employees;
 using DAL;
 using DAL.DomainModels;
+using DAL.DomainModels.Departments;
 using DAL.Entities.HumanResources;
+using DAL.Entities.Person;
 
 namespace BLL
 {
@@ -32,6 +34,18 @@ namespace BLL
             {
                 config.CreateMap<EmployeeDomain, EmployeeDto>();
                 config.CreateMap<Department, DepartmentDto>();
+                config.CreateMap<GroupDomain, GroupDto>();
+                config.CreateMap<EmployeeDetailDomain, EmployeeDetailDto>();
+                config.CreateMap<EmailAddresses, EmailAddressesDto>();
+                config.CreateMap<EmployeeAddressDomain, EmployeeAddressDto>();
+                config.CreateMap<EmployeeInfoDomain, EmployeeInfoDto>();
+                config.CreateMap<EmployeeContactDomain, EmployeeContactDto>();
+                config.CreateMap<EmployeePhoneDomain, EmployeePhoneDto>();
+
+                config.CreateMap<PageDomain<EmployeeDomain>, BasePageDto<EmployeeDto>>()
+                    .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+
                 config.CreateMap<PageDomain<Department>, BasePageDto<DepartmentDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
                     .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));

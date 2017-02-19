@@ -23,5 +23,12 @@ namespace BLL.Employees
 
             return Mapper.Map<BasePageDto<EmployeeDto>>(result);
         }
+
+        public async Task<EmployeeDetailDto> GetEmployeeDetailByIdAsync(int employeeId)
+        {
+            var result = await _employeeRepository.GetEmployeeDetailByIdAsync(employeeId);
+
+            return Mapper.Map<EmployeeDetailDto>(result);
+        }
     }
 }

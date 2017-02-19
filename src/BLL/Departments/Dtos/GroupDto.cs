@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace BLL.Departments.Dtos
 {
-    public class GetGroupOutput
+    public class GroupDto
     {
-
+        public string GroupName { get; set; }
     }
 }

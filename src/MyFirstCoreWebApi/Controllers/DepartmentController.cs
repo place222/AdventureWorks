@@ -30,22 +30,61 @@ namespace MyFirstCoreWebApi.Controllers
 
         [Route("GetDepartmentsByPage")]
         [HttpPost]
-        public async Task<BaseOutput<BasePageDto<DepartmentDto>>> GetDepartmentsByPage([FromForm]BasePageInput input)
+        public async Task<BasePageDto<DepartmentDto>> GetDepartmentsByPage([FromForm]BasePageInput input)
         {
-            var result = new BaseOutput<BasePageDto<DepartmentDto>>();
-
             try
             {
-                result.Data = await _departmentService.GetDepartmentsByPageAsync(input);
+                return await _departmentService.GetDepartmentsByPageAsync(input);
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex.Message, ex.StackTrace);
-                result.ErrorCode = 500;
-                result.ErrorMessage = ex.GetBaseException().Message;
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
             }
+        }
 
-            return result;
+        [Route("GetDepartmentById")]
+        [HttpGet]
+        public async Task<DepartmentDto> GetDepartmentById([FromQuery]int departmentId)
+        {
+            try
+            {
+                return await _departmentService.GetDepartmentByIdAsync(departmentId);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
+        [Route("DeleteDepartmentById")]
+        [HttpGet]
+        public async Task DeleteDepartmentById([FromQuery]int departmentId)
+        {
+            try
+            {
+                await _departmentService.DeleteDepartmentByIdAsync(departmentId);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
+
+        [Route("GetGroups")]
+        [HttpPost]
+        public async Task<IEnumerable<GroupDto>> GetGroupsAsync()
+        {
+            try
+            {
+                return await _departmentService.GetGroupsAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
         }
     }
 }

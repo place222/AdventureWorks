@@ -9,8 +9,10 @@ namespace BLL.Departments
 {
     public interface IDepartmentService
     {
-        Task<GetGroupOutput> GetGroups(GetGroupInput input);
+        Task<IEnumerable<GroupDto>> GetGroupsAsync();
 
         Task<BasePageDto<DepartmentDto>> GetDepartmentsByPageAsync(BasePageInput input);
+        Task<DepartmentDto> GetDepartmentByIdAsync(int departmentId);
+        Task DeleteDepartmentByIdAsync(int departmentId);
     }
 }

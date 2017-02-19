@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyFirstCoreWebApi.Models.Departments
+namespace BLL.Employees.Dtos
 {
-    public class GetDepartmentsByPageInput
+    public class EmployeeContactDto
     {
     }
 }
