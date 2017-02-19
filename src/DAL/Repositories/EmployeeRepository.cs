@@ -89,6 +89,7 @@ namespace DAL.Repositories
             sql += @"SELECT AddressLine1 ,
                            AddressLine2 ,
                            City,
+                            SpatialLocation,
 	                       PostalCode , 
                            StateProvince.StateProvinceID,
 	                       StateProvinceCode,

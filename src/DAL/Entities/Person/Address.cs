@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+#if NET461
+using Microsoft.SqlServer.Types;
+#endif
 
 namespace DAL.Entities.Person
 {
@@ -37,7 +40,11 @@ namespace DAL.Entities.Person
         /// <summary>
         /// geography位置数据
         /// </summary>
+#if NET461
+        public SqlGeography SpatialLocation { get; set; }
+#else
         public byte[] SpatialLocation { get; set; }
+#endif
         /// <summary>
         /// 更新时间
         /// </summary>

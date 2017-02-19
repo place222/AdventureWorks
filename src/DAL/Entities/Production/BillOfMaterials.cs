@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 namespace DAL.Entities.Production
 {
     /// <summary>
-    /// 项目要的自行车及配件，确定层次关系父母产品组成(材料清单)
+    /// (材料清单)
+    /// 项目要的自行车及配件，确定层次关系父母产品组成
     /// </summary>
     public class BillOfMaterials
     {

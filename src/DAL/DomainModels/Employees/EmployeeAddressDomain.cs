@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+#if NET461
+using Microsoft.SqlServer.Types;
+#endif
 
 namespace DAL.DomainModels.Employees
 {
@@ -23,6 +26,10 @@ namespace DAL.DomainModels.Employees
         /// 邮政编码
         /// </summary>
         public string PostalCode { get; set; }
+
+#if NET461
+        public SqlGeography SpatialLocation { get; set; }
+#endif
         /// <summary>
         /// 
         /// </summary>

@@ -11,9 +11,11 @@
 
   "frameworks": {
     "netstandard1.6": {
-      "imports": "netcoreapp1.0"
-    },
-    "net461": {}
+      "imports": [
+        "netcoreapp1.0",
+        "net461"
+      ]
+    }
   },
   "runtimes": {
     "win10-x64": {}

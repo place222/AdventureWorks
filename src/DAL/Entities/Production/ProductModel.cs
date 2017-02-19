@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace DAL.Entities.Production
 {
     /// <summary>
-    /// 产品模型分类
+    /// 产品型号分类
     /// </summary>
     public class ProductModel
     {

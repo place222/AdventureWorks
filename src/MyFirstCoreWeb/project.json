@@ -43,7 +43,7 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "NLog.Extensions.Logging":"1.0.0-*",  
+    "NLog.Extensions.Logging": "1.0.0-*",
     "Sendgrid": "9.0.10"
   },
 
@@ -60,7 +60,6 @@
       ]
     }
   },
-
   "frameworks": {
     "net461": {},
     "netcoreapp1.0": {

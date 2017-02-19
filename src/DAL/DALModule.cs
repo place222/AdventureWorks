@@ -10,5 +10,8 @@ namespace DAL
     /// </summary>
     public class DALModule
     {
+        public DALModule()
+        {
+        }
     }
 }
