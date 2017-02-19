@@ -1,0 +1,55 @@
+Adventure Works Cycles，AdventureWorks 示例数据库所基于的虚构公司，是一家大型跨国生产公司。
+公司生产金属和复合材料的自行车，产品远销北美、欧洲和亚洲市场。公司总部设在华盛顿州的伯瑟尔市，拥有 290 名雇员，
+而且拥有多个活跃在世界各地的地区性销售团队。
+在 2000 年，Adventure Works Cycles 购买了位于墨西哥的小型生产厂 Importadores Neptuno。
+Importadores Neptuno 为 Adventure Works Cycles 产品生产多种关键子组件。这些子组件将被运送到伯瑟尔市进行最后的产品装配。
+2001 年，Importadores Neptuno 转型成为专注于旅行登山车系列产品的制造商和销售商。
+实现一个成功的财务年度之后，Adventure Works Cycles 希望通过以下方法扩大市场份额：
+专注于向高端客户提供产品、通过外部网站扩展其产品的销售渠道、通过降低生产成本来削减其销售成本。
+
+
+1.产品方案
+作为自行车生产公司，Adventure Works Cycles 提供以下四类产品：
+Adventure Works Cycles 公司生产的自行车。
+自行车组件（替换零件），例如，车轮、踏板或刹车部件。
+从供应商购买的转售给 Adventure Works Cycles 客户的自行车装饰。
+从供应商购买的转售给 Adventure Works Cycles 客户的自行车附件。
+
+Production.BillOfMaterials				用于制造自行车和自行车子部件的所有组件的列表。
+Production.Culture						列出使用了哪些语言来本地化产品说明。
+Production.Location						列出 Adventure Works Cycles 中产品和零件的库存位置。
+										例如，油漆既贮藏在仓库的 Paint Storage 处，又储藏在制造中心 Paint Shop（自行车骨架在这里上漆）。
+Production.Product						由 Adventure Works Cycles 销售或用来制造 Adventure Works Cycles 自行车和自行车组件的各种产品的信息。
+Production.ProductCategory				产品最常规的分类。例如，自行车或附件。
+Production.ProductCostHistory			列出不同时间点的产品成本
+Production.ProductDescription			列出各种语言的详细产品说明。
+Production.ProductInventory				按地点统计的产品库存量。请参阅前面介绍的 Production.Location。
+Production.ProductListPriceHistory		列出不同时间点的产品价格。
+Production.ProductModel					与产品关联的产品型号。例如，Mountain-100 或 LL Touring Frame。
+ProductModelProductDescriptionCulture	给出产品型号、产品说明及其本地化后的语言之间的交叉引用。
+Production.ProductPhoto					列出 Adventure Works Cycles 所售产品的图像。
+Production.ProductReview				给出客户对 Adventure Works Cycles 产品的评价。
+Production.ProductSubcategory			产品类别的子类别。例如，“山地自行车”、“平地自行车”和“旅行登山车”是“自行车”类别的子类别。
+
+
+
+
+2.生产方案
+在 AdventureWorks 示例数据库中，假定表支持下面典型的生产区：
+生产过程：
+物料清单：列出在其他产品中使用或包含的产品。
+工作订单：按生产车间安排的生产顺序。
+位置：定义主要的生产区和库存区（例如，用于框架成型、油漆、装配的区域）。
+生产车间使用的产品生产和装配说明。
+产品库存：某个产品在仓库或生产区中的实际位置和可用数量。
+工程文档：自行车或自行车组件的技术规范和维护文档。
+Production.BillOfMaterials				用于制造自行车和自行车部件的所有组件的列表。
+Production.Document						工程规范和其他技术文档。
+Production.Illustration					自行车生产图
+Production.Location						Adventure Works Cycles 中的一系列库存区和生产区，产品和零件作为库存存放在这些区域中或者是在这些区域中进行生产。例如，油漆既贮藏在仓库的 Paint Storage 处，又储藏在制造中心 Paint Shop（自行车骨架在这里上漆）。
+Production.Product						由 Adventure Works Cycles 销售或用来制造 Adventure Works Cycles 自行车和自行车组件的各种产品的信息。
+Production.ProductInventory				按地点统计的产品库存量。请参阅前面介绍的 Production.Location。
+Production.ProductModel					与产品关联的产品型号。例如，Mountain-100 或 LL Touring Frame。
+Production.ScrapReason					生产过程中拒绝自行车或自行车零件的常见原因列表。例如，在“上漆”生产车间，废弃未上漆好的自行车框架的原因是“上漆失败”。
+Production.WorkOrder					定义为了满足当前和未来销售的需要而必须生产的产品及其数量。
+Production.WorkOrderRouting				每一工作订单的详细信息，包括在生产或装配过程中产品经历的生产车间的顺序。例如，自行车手柄在“框架成型”生产车间生产。生产出来后，再将它们移交到“框架焊接”生产车间进行其他作业，然后移送到“装配”生产车间将其装配到自行车框架上。
