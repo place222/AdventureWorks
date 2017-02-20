@@ -13,6 +13,8 @@ namespace DAL
         {
             services.AddTransient<IDepartmentRepository, DepartmentRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IProductModelRepository, ProductModelRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
         }
     }
 }

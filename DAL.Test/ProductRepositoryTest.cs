@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Entities.Production;
 using DAL.Repositories;
 using Microsoft.Extensions.Options;
 using MyFirstCoreWeb.Models;
@@ -43,7 +44,6 @@ namespace DAL.Test
         {
 
             var cate = _productRepository.GetProductsBySubCategoryId(1);
-
             Assert.NotEmpty(cate);
         }
     }

@@ -31,6 +31,11 @@ Production.ProductPhoto					列出 Adventure Works Cycles 所售产品的图像。
 Production.ProductReview				给出客户对 Adventure Works Cycles 产品的评价。
 Production.ProductSubcategory			产品类别的子类别。例如，“山地自行车”、“平地自行车”和“旅行登山车”是“自行车”类别的子类别。
 
+产品{产品型号{包含每个型号的装配图，型号说明文件}，产品分类，产品成本记录，产品文档，产品图片，产品反馈，产品销售价格记录}
+(1)产品型号的维护
+(2)产品分类的维护
+(3)创建产品关联
+(4)产品组装结构
 
 
 

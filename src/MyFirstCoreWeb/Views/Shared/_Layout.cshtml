@@ -14,10 +14,11 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css"/>
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css" />
         <link rel="stylesheet" href="~/lib/admin-lte/plugins/datatables/dataTables.bootstrap.css" />
         <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css" />
         <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css" />
+        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
@@ -251,12 +252,12 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             @if (SignInManager.IsSignedIn(User))
-                        {
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="~/lib/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">你好 @UserManager.GetUserName(User)!</span>
-                        </a>
-                        }
+                            {
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="~/lib/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                    <span class="hidden-xs">你好 @UserManager.GetUserName(User)!</span>
+                                </a>
+                            }
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
@@ -364,10 +365,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a asp-controller="Product" asp-action="index"><i class="fa fa-circle-o"></i> 材料</a></li>
-                            <li><a asp-controller="Employee" asp-action="index"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-                            <li><a asp-controller="Person" asp-action="index"><i class="fa fa-circle-o"></i> 招聘</a></li>
-                            <li><a asp-controller="Person" asp-action="index"><i class="fa fa-circle-o"></i> 轮班信息</a></li>
+                            <li><a asp-controller="Product" asp-action="ProductModel"><i class="fa fa-circle-o"></i> 产品型号</a></li>
+                            <li><a asp-controller="Product" asp-action="Category"><i class="fa fa-circle-o"></i> 产品分类</a></li>
+                            <li><a asp-controller="Person" asp-action="index"><i class="fa fa-circle-o"></i> 产品</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -648,6 +648,7 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/jquery-ui/jquery-ui.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jstree/dist/jstree.js"></script>
         <script src="~/lib/admin-lte/plugins/datatables/jquery.dataTables.js"></script>
         <script src="~/lib/admin-lte/plugins/datatables/dataTables.bootstrap.js"></script>
         <script src="~/lib/admin-lte/dist/js/app.js"></script>
