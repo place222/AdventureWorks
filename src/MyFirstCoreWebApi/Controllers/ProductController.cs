@@ -6,6 +6,7 @@ using BLL;
 using BLL.Products;
 using BLL.Products.Dtos;
 using BLL.Products.Dtos.Cateogries;
+using BLL.Products.Dtos.Products;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -181,9 +182,39 @@ namespace MyFirstCoreWebApi.Controllers
 
         #region 产品
         /*
-         * 1.
+         * 1.产品列表
+         * 2.产品详情
          * **/
 
+        [HttpPost]
+        [Route("GetProductsByPage")]
+        public async Task<BasePageDto<ProductDto>> GetProductsByPage([FromForm] BasePageInput input)
+        {
+            try
+            {
+                return await _productService.GetProductsByPageAsync(input);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("GetProdutDetailById")]
+        public async Task<ProductDetailDto> GetProdutDetailById([FromQuery]int productId)
+        {
+            try
+            {
+                return await _productService.GetProdutDetailByIdAsync(productId);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
         #endregion
     }
 }

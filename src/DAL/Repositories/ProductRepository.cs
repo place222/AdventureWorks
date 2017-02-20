@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using DAL.DomainModels;
+using DAL.DomainModels.Products;
 using DAL.Entities.Production;
 using Microsoft.Extensions.Options;
 using MyFirstCoreWeb.Models;
@@ -107,6 +109,118 @@ JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhot
                 product = conn.QueryFirstOrDefault<Product>("SELECT * FROM Production.Product WHERE ProductID = @id", new { id = id });
             }
             return product;
+        }
+
+        /// <summary>
+        /// 后台产品页列表
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public async Task<PageDomain<ProductDomain>> GetProductsByPageAsync(int start, int length)
+        {
+            //TODO::没有图片的话就有BUG了
+            var model = new PageDomain<ProductDomain>();
+            var sql = @"SELECT MakeFlag ,
+	                           ProductNumber,
+                               FinishedGoodsFlag ,
+                               Name ,
+                               Product.ProductID ,
+                               ThumbNailPhoto
+                        FROM Production.Product JOIN Production.ProductProductPhoto 
+                        ON ProductProductPhoto.ProductID = Product.ProductID
+                        JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhoto.ProductPhotoID
+                        WHERE [Primary] = 1
+                        ORDER BY Production.Product.ProductID DESC
+                        OFFSET @OFFSET ROWS FETCH NEXT @FETCH ROWS ONLY;";
+            sql += @"SELECT COUNT(*) FROM Production.Product;";
+            var p = new DynamicParameters();
+            p.Add("@OFFSET", start, DbType.Int32);
+            p.Add("@FETCH", length, DbType.Int32);
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
+            {
+                using (var multi = await conn.QueryMultipleAsync(sql, p))
+                {
+                    model.Data = await multi.ReadAsync<ProductDomain>();
+                    model.TotalRecord = await multi.ReadFirstOrDefaultAsync<int>();
+                }
+            }
+
+            return model;
+        }
+        /// <summary>
+        /// 查看产品详情
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public async Task<ProductDetailDomain> GetProdutDetailByIdAsync(int productId)
+        {
+            var model = new ProductDetailDomain();
+            var sql = @"SELECT Class ,
+                               Color ,
+                               DaysToManufacture ,
+                               DiscontinuedDate ,
+                               FinishedGoodsFlag ,
+                               ListPrice ,
+                               MakeFlag ,
+                               Product.Name ,
+                               ProductSubcategory.Name AS ProductSubcategoryName,
+                               size.Name AS SizeUnitMeasureCodeName,
+                               weight.Name AS WeightUnitMeasureCodeName,
+                               ProductID ,
+                               ProductLine ,
+                               ProductModelID ,
+                               ProductNumber ,
+                               Product.ProductSubcategoryID ,
+                               ReorderPoint ,
+                               SafetyStockLevel ,
+                               SellEndDate ,
+                               SellStartDate ,
+                               Size ,
+                               SizeUnitMeasureCode ,
+                               StandardCost ,
+                               Style ,
+                               Weight ,
+                               WeightUnitMeasureCode 
+                        FROM Production.Product
+                        LEFT JOIN Production.ProductSubcategory ON ProductSubcategory.ProductSubcategoryID = Product.ProductSubcategoryID
+                        LEFT JOIN Production.UnitMeasure AS size ON size.UnitMeasureCode = Product.SizeUnitMeasureCode
+                        LEFT JOIN Production.UnitMeasure AS weight ON weight.UnitMeasureCode = Product.WeightUnitMeasureCode
+                        WHERE ProductID = @id;";
+            sql += @"SELECT ProductID,
+                            LargePhoto ,
+                            ProductPhoto.ProductPhotoID 
+                    FROM Production.ProductProductPhoto 
+                    JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhoto.ProductPhotoID
+                    WHERE ProductID = @id;";
+            sql += @"SELECT ProductID ,
+                           StandardCost ,
+                           StartDate ,
+                           EndDate 
+                    FROM Production.ProductCostHistory
+                    WHERE ProductID = @id;";
+            sql += @"SELECT Comments ,
+                           EmailAddress ,
+                           ProductID ,
+                           ProductReviewID ,
+                           Rating ,
+                           ReviewDate ,
+                           ReviewerName
+                    FROM Production.ProductReview 
+                    WHERE ProductID = @id;";
+            var p = new DynamicParameters();
+            p.Add("@id", productId, DbType.Int32);
+            using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
+            {
+                using (var multi = await conn.QueryMultipleAsync(sql, p))
+                {
+                    model.ProductInfo = await multi.ReadFirstOrDefaultAsync<ProductInfoDomain>();
+                    model.ProductPhotos = await multi.ReadAsync<ProductPhoto>();
+                    model.ProductCostHistories = await multi.ReadAsync<ProductCostHistory>();
+                    model.ProductReviews = await multi.ReadAsync<ProductReview>();
+                }
+            }
+            return model;
         }
     }
 }

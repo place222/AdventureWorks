@@ -39,7 +39,6 @@
 
 
         $(function () {
-
             $('#jstree_demo_div').jstree({
                 core: {
                     data: {
@@ -50,14 +49,13 @@
                             return { id: node.id };
                         }
                     }
-                }
+                },
+                plugins:['wholerow']
             });
 
             $('#jstree_demo_div').on("changed.jstree", function (e, data) {
                 console.log(data.selected);
             });
-
-
         });
     </script>
 }

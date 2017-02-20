@@ -11,9 +11,11 @@ using BLL.Departments.Dtos;
 using BLL.Employees;
 using BLL.Products;
 using BLL.Products.Dtos;
+using BLL.Products.Dtos.Products;
 using DAL;
 using DAL.DomainModels;
 using DAL.DomainModels.Departments;
+using DAL.DomainModels.Products;
 using DAL.Entities.HumanResources;
 using DAL.Entities.Person;
 using DAL.Entities.Production;
@@ -46,8 +48,12 @@ namespace BLL
                 config.CreateMap<EmployeeContactDomain, EmployeeContactDto>();
                 config.CreateMap<EmployeePhoneDomain, EmployeePhoneDto>();
                 config.CreateMap<ProductModel, ProductModelDto>();
-                //.ForMember(x => x.CatalogDescription, x => x.MapFrom(c => c.CatalogDescription.Value))
-                //.ForMember(x => x.Instructions, x => x.MapFrom(c => c.Instructions.Value));
+                config.CreateMap<ProductDomain, ProductDto>();
+                config.CreateMap<ProductDetailDomain, ProductDetailDto>();
+                config.CreateMap<ProductInfoDomain, ProductInfoDto>();
+                config.CreateMap<ProductPhoto, ProductDetailPhotoDto>();
+                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>();
+                config.CreateMap<ProductReview, ProductReviewDto>();
 
                 config.CreateMap<PageDomain<EmployeeDomain>, BasePageDto<EmployeeDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
@@ -58,6 +64,10 @@ namespace BLL
                     .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
 
                 config.CreateMap<PageDomain<ProductModel>, BasePageDto<ProductModelDto>>()
+                    .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+
+                config.CreateMap<PageDomain<ProductDomain>, BasePageDto<ProductDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
                     .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
             });

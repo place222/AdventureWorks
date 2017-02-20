@@ -15,6 +15,7 @@ namespace DAL
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             services.AddTransient<IProductModelRepository, ProductModelRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
     }
 }

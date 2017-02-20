@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Products.Dtos;
 using BLL.Products.Dtos.Cateogries;
+using BLL.Products.Dtos.Products;
 using DAL.Repositories;
+using Microsoft.AspNetCore.Hosting;
 
 namespace BLL.Products
 {
@@ -13,11 +15,13 @@ namespace BLL.Products
     {
         private readonly IProductModelRepository _productModelRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ProductService(IProductModelRepository productModelRepository, ICategoryRepository categoryRepository)
+        public ProductService(IProductModelRepository productModelRepository, ICategoryRepository categoryRepository, IProductRepository productRepository)
         {
             _productModelRepository = productModelRepository;
             _categoryRepository = categoryRepository;
+            _productRepository = productRepository;
         }
 
         public async Task<BasePageDto<ProductModelDto>> GetProductModelsByPageAsync(BasePageInput input)
@@ -46,6 +50,29 @@ namespace BLL.Products
                         })
             }));
             return models;
+        }
+
+        /// <summary>
+        /// 获取产品列表
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<BasePageDto<ProductDto>> GetProductsByPageAsync(BasePageInput input)
+        {
+            var result = await _productRepository.GetProductsByPageAsync(input.Start, input.Length);
+
+            return Mapper.Map<BasePageDto<ProductDto>>(result);
+        }
+        /// <summary>
+        /// 查看产品详情
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public async Task<ProductDetailDto> GetProdutDetailByIdAsync(int productId)
+        {
+            var result = await _productRepository.GetProdutDetailByIdAsync(productId);
+
+            return Mapper.Map<ProductDetailDto>(result);
         }
     }
 }

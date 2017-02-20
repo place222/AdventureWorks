@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DAL.Entities.Production
+namespace DAL.DomainModels.Products
 {
-    /// <summary>
-    /// 产品
-    /// </summary>
-    public class Product
+    public class ProductInfoDomain
     {
         /// <summary>
         /// 商品编号
@@ -59,9 +56,17 @@ namespace DAL.Entities.Production
         /// </summary>
         public string SizeUnitMeasureCode { get; set; }
         /// <summary>
+        /// 测量尺寸的单位名称
+        /// </summary>
+        public string SizeUnitMeasureCodeName { get; set; }
+        /// <summary>
         /// 
         /// </summary>
         public string WeightUnitMeasureCode { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string WeightUnitMeasureCodeName { get; set; }
         /// <summary>
         /// 重量
         /// </summary>
@@ -87,6 +92,10 @@ namespace DAL.Entities.Production
         /// 产品分类
         /// </summary>
         public int? ProductSubcategoryID { get; set; }
+        /// <summary>
+        /// 分类名称
+        /// </summary>
+        public string ProductSubcategoryName { get; set; }
         /// <summary>
         /// 产品模型
         /// </summary>
