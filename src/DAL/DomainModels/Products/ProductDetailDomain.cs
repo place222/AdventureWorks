@@ -21,5 +21,13 @@ namespace DAL.DomainModels.Products
         /// 评论  
         /// </summary>
         public IEnumerable<ProductReview> ProductReviews { get; set; }
+        /// <summary>
+        /// 销售价格记录表
+        /// </summary>
+        public IEnumerable<ProductListPriceHistory> ProductListPriceHistories { get; set; }
+        /// <summary>
+        /// 产品库存信息
+        /// </summary>
+        public IEnumerable<ProductInventoryDomain> ProductInventories { get; set; }
     }
 }

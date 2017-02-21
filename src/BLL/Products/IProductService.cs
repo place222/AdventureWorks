@@ -14,5 +14,6 @@ namespace BLL.Products
         Task<IEnumerable<CategoryDto>> GetCategoriesAsync();
         Task<BasePageDto<ProductDto>> GetProductsByPageAsync(BasePageInput input);
         Task<ProductDetailDto> GetProdutDetailByIdAsync(int productId);
+        Task<ProductModelDetailDto> GetProductModelDetailByIdAsync(int productModelId);
     }
 }

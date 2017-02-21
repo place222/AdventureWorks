@@ -9,7 +9,6 @@ namespace BLL.Products.Dtos.Products
     public class ProductDetailDto
     {
         public ProductInfoDto ProductInfo { get; set; }
-
         /// <summary>
         /// 图片
         /// </summary>
@@ -22,6 +21,13 @@ namespace BLL.Products.Dtos.Products
         /// 评论
         /// </summary>
         public IEnumerable<ProductReviewDto> ProductReviews { get; set; }
-
+        /// <summary>
+        /// 销售价格记录表
+        /// </summary>
+        public IEnumerable<ProductDetailListPriceHistoryDto> ProductListPriceHistories { get; set; }
+        /// <summary>
+        /// 产品库存信息
+        /// </summary>
+        public IEnumerable<ProductInventoryDto> ProductInventories { get; set; }
     }
 }

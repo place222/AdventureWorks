@@ -33,8 +33,7 @@ namespace MyFirstCoreWebApi.Controllers
          * 2.创建产品型号
          * 3.修改产品型号
          * 4.删除产品型号
-         * 5.查看产品型号的目录描述
-         * 6.查看产品型号的装配图
+         * 5.查看型号的描述
          * */
         [Route("GetProductModelsByPage")]
         [HttpPost]
@@ -43,6 +42,20 @@ namespace MyFirstCoreWebApi.Controllers
             try
             {
                 return await _productService.GetProductModelsByPageAsync(input);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
+        [Route("GetProductModelDetailById")]
+        [HttpPost]
+        public async Task<ProductModelDetailDto> GetProductModelDetailById([FromQuery] int productModelId)
+        {
+            try
+            {
+                return await _productService.GetProductModelDetailByIdAsync(productModelId);
             }
             catch (Exception ex)
             {
@@ -93,7 +106,6 @@ namespace MyFirstCoreWebApi.Controllers
                 throw;
             }
         }
-
         #endregion
 
         #region 产品分类

@@ -15,6 +15,7 @@ using BLL.Products.Dtos.Products;
 using DAL;
 using DAL.DomainModels;
 using DAL.DomainModels.Departments;
+using DAL.DomainModels.ProductModels;
 using DAL.DomainModels.Products;
 using DAL.Entities.HumanResources;
 using DAL.Entities.Person;
@@ -49,11 +50,18 @@ namespace BLL
                 config.CreateMap<EmployeePhoneDomain, EmployeePhoneDto>();
                 config.CreateMap<ProductModel, ProductModelDto>();
                 config.CreateMap<ProductDomain, ProductDto>();
+
                 config.CreateMap<ProductDetailDomain, ProductDetailDto>();
                 config.CreateMap<ProductInfoDomain, ProductInfoDto>();
                 config.CreateMap<ProductPhoto, ProductDetailPhotoDto>();
                 config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>();
                 config.CreateMap<ProductReview, ProductReviewDto>();
+                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>();
+                config.CreateMap<ProductInventoryDomain, ProductInventoryDto>();
+
+                config.CreateMap<ProductModelDetailDoamin, ProductModelDetailDto>();
+                config.CreateMap<ProductDescription, ProductDescriptionDto>();
+                config.CreateMap<Illustration, IllustrationDto>();
 
                 config.CreateMap<PageDomain<EmployeeDomain>, BasePageDto<EmployeeDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))

@@ -208,6 +208,24 @@ JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhot
                            ReviewerName
                     FROM Production.ProductReview 
                     WHERE ProductID = @id;";
+            sql += @"SELECT ProductID ,
+                           StartDate ,
+                           EndDate ,
+                           ListPrice 
+                    FROM Production.ProductListPriceHistory 
+                    WHERE ProductID = @id;";
+            sql += @"SELECT ProductID ,
+                           ProductInventory.LocationID ,
+                           Shelf ,
+                           Bin ,
+                           Quantity ,
+                           Name ,
+                           CostRate ,
+                           Availability
+                    FROM Production.ProductInventory
+                    JOIN Production.Location 
+                    ON Location.LocationID = ProductInventory.LocationID
+                    WHERE ProductID = @id;";
             var p = new DynamicParameters();
             p.Add("@id", productId, DbType.Int32);
             using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
@@ -218,8 +236,30 @@ JOIN Production.ProductPhoto ON ProductPhoto.ProductPhotoID = ProductProductPhot
                     model.ProductPhotos = await multi.ReadAsync<ProductPhoto>();
                     model.ProductCostHistories = await multi.ReadAsync<ProductCostHistory>();
                     model.ProductReviews = await multi.ReadAsync<ProductReview>();
+                    model.ProductListPriceHistories = await multi.ReadAsync<ProductListPriceHistory>();
+                    model.ProductInventories = await multi.ReadAsync<ProductInventoryDomain>();
                 }
             }
+            /*查找产品的文档tree
+             * SELECT DISTINCT * FROM (
+SELECT pd.ProductID ,
+       ni.ji ,
+       ni.DocumentLevel ,
+       ni.Title ,
+       ni.Owner ,
+       ni.FolderFlag ,
+       ni.FileName ,
+       ni.FileExtension ,
+       ni.Revision ,
+       ni.ChangeNumber ,
+       ni.Status ,
+       ni.DocumentSummary ,
+       ni.Document
+FROM Production.ProductDocument AS pd
+CROSS APPLY (SELECT dd.DocumentNode.ToString() AS ji,* FROM Production.Document AS dd
+ WHERE pd.DocumentNode.IsDescendantOf(dd.DocumentNode) = 1 ) AS ni 
+ WHERE pd.ProductID = 506) AS d
+             */
             return model;
         }
     }

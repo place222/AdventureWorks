@@ -74,5 +74,12 @@ namespace BLL.Products
 
             return Mapper.Map<ProductDetailDto>(result);
         }
+
+        public async Task<ProductModelDetailDto> GetProductModelDetailByIdAsync(int productModelId)
+        {
+            var result = await _productModelRepository.GetProductModelDetailByIdAsync(productModelId);
+
+            return Mapper.Map<ProductModelDetailDto>(result);
+        }
     }
 }
