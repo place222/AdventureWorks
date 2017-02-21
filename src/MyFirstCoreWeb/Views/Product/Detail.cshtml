@@ -1,147 +1,209 @@
 ﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model BLL.Products.Dtos.Products.ProductDetailDto
-<div class="pad margin no-print">
-    <div class="callout callout-info" style="margin-bottom: 0!important;">
-        <h4><i class="fa fa-info"></i> Note:</h4>
-        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">基本信息</a></li>
+        <li><a href="#tab_2" data-toggle="tab">历史纪录</a></li>
+        <li><a href="#tab_3" data-toggle="tab">商品评价</a></li>
+        <li><a href="#tab_4" data-toggle="tab">库存信息</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" id="tab_1">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <i class="fa fa-globe"></i> @Model.ProductInfo.Name
+                        <small class="pull-right">Date: @Model.ProductInfo.SellStartDate</small>
+                    </h2>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th style="width: 50%">商品名称:</th>
+                                <td>@Model.ProductInfo.Name</td>
+                            </tr>
+                            <tr>
+                                <th>商品标识码:</th>
+                                <td>@Model.ProductInfo.ProductNumber</td>
+                            </tr>
+                            <tr>
+                                <th>是否为采购:</th>
+                                <td>@Model.ProductInfo.MakeFlag</td>
+                            </tr>
+                            <tr>
+                                <th>是否畅销:</th>
+                                <td>@Model.ProductInfo.FinishedGoodsFlag</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 50%">销售价格:</th>
+                                <td>@Model.ProductInfo.ListPrice</td>
+                            </tr>
+                            <tr>
+                                <th>尺寸:</th>
+                                <td>@Model.ProductInfo.Size</td>
+                            </tr>
+                            <tr>
+                                <th>测量尺寸:</th>
+                                <td>@Model.ProductInfo.SizeUnitMeasureCodeName</td>
+                            </tr>
+                            <tr>
+                                <th>重量尺寸:</th>
+                                <td>@Model.ProductInfo.WeightUnitMeasureCodeName</td>
+                            </tr>
+                            <tr>
+                                <th>生成需要天数:</th>
+                                <td>@Model.ProductInfo.DaysToManufacture</td>
+                            </tr>
+                            <tr>
+                                <th>生产线:</th>
+                                <td>@Model.ProductInfo.ProductLine</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th style="width: 50%">颜色:</th>
+                                <td>@Model.ProductInfo.Color</td>
+                            </tr>
+                            <tr>
+                                <th>最低库存量:</th>
+                                <td>@Model.ProductInfo.SafetyStockLevel</td>
+                            </tr>
+                            <tr>
+                                <th>库存水平:</th>
+                                <td>@Model.ProductInfo.ReorderPoint</td>
+                            </tr>
+                            <tr>
+                                <th>标准成本:</th>
+                                <td>@Model.ProductInfo.StandardCost</td>
+                            </tr>
+                            s
+                            <tr>
+                                <th>等级:</th>
+                                <td>@Model.ProductInfo.Class</td>
+                            </tr>
+                            <tr>
+                                <th>款式:</th>
+                                <td>@Model.ProductInfo.Style</td>
+                            </tr>
+                            <tr>
+                                <th>分类名称:</th>
+                                <td>@Model.ProductInfo.ProductSubcategoryName</td>
+                            </tr>
+                            <tr>
+                                <th>开始销售日期:</th>
+                                <td>@Model.ProductInfo.SellStartDate</td>
+                            </tr>
+                            <tr>
+                                <th>销售结束日期:</th>
+                                <td>@Model.ProductInfo.SellEndDate</td>
+                            </tr>
+                            <tr>
+                                <th>打折日期:</th>
+                                <td>@Model.ProductInfo.DiscontinuedDate</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                    <div class="table-responsive">
+                        <table class="table">
+                            @foreach (var item in Model.ProductPhotos)
+                            {
+                            <tr>
+                                <td><img src="data:image/gif;base64,@Convert.ToBase64String(item.LargePhoto)" /></td>
+                            </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+        <div class="tab-pane" id="tab_2">
+            <div class="row invoice-info">
+                <div class="col-sm-6">
+                    <h3>成本历史纪录</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>标准成本</th>
+                            <th>开始日期</th>
+                            <th>结束日期</th>
+                        </tr>
+                        @foreach (var item in Model.ProductCostHistories)
+                            {
+                            <tr>
+                                <td>@item.StandardCost</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                            </tr>
+                            }
+                    </table>
+                </div>
+
+                <div class="col-sm-6">
+                    <h3>销售报价纪录</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>销售报价</th>
+                            <th>开始日期</th>
+                            <th>结束日期</th>
+                        </tr>
+                        @foreach (var item in Model.ProductListPriceHistories)
+                        {
+                            <tr>
+                                <td>@item.ListPrice</td>
+                                <td>@item.StartDate</td>
+                                <td>@item.EndDate</td>
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab_3">
+            <div class="row invoice-info">
+                <div class="col-sm-12">
+                    <h3>评论纪录</h3>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>评论标题</th>
+                            <th>评论时间</th>
+                            <th>评论人邮件地址</th>
+                            <th>评分</th>
+                            <th>留言</th>
+                        </tr>
+                        @foreach (var item in Model.ProductReviews)
+                        {
+                            <tr>
+                                <td>@item.ReviewerName</td>
+                                <td>@item.ReviewDate</td>
+                                <td>@item.EmailAddress</td>
+                                <td>@item.Rating</td>
+                                <td>@item.Comments</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab_4">
+            
+        </div>
     </div>
 </div>
-
 <!-- Main content -->
-<section class="invoice">
-    <!-- title row -->
-    <div class="row">
-        <div class="col-xs-12">
-            <h2 class="page-header">
-                <i class="fa fa-globe"></i> @Model.ProductInfo.Name
-                <small class="pull-right">Date: @Model.ProductInfo.SellStartDate</small>
-            </h2>
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- info row -->
-    <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th style="width: 50%">商品名称:</th>
-                        <td>@Model.ProductInfo.Name</td>
-                    </tr>
-                    <tr>
-                        <th>商品标识码:</th>
-                        <td>@Model.ProductInfo.ProductNumber</td>
-                    </tr>
-                    <tr>
-                        <th>是否为采购:</th>
-                        <td>@Model.ProductInfo.MakeFlag</td>
-                    </tr>
-                    <tr>
-                        <th>是否畅销:</th>
-                        <td>@Model.ProductInfo.FinishedGoodsFlag</td>
-                    </tr>
-                    <tr>
-                        <th style="width: 50%">销售价格:</th>
-                        <td>@Model.ProductInfo.ListPrice</td>
-                    </tr>
-                    <tr>
-                        <th>尺寸:</th>
-                        <td>@Model.ProductInfo.Size</td>
-                    </tr>
-                    <tr>
-                        <th>测量尺寸:</th>
-                        <td>@Model.ProductInfo.SizeUnitMeasureCodeName</td>
-                    </tr>
-                    <tr>
-                        <th>重量尺寸:</th>
-                        <td>@Model.ProductInfo.WeightUnitMeasureCodeName</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-            <div class="table-responsive">
-                <table class="table">
-                    <tr>
-                        <th style="width: 50%">颜色:</th>
-                        <td>@Model.ProductInfo.Color</td>
-                    </tr>
-                    <tr>
-                        <th>最低库存量:</th>
-                        <td>@Model.ProductInfo.SafetyStockLevel</td>
-                    </tr>
-                    <tr>
-                        <th>库存水平:</th>
-                        <td>@Model.ProductInfo.ReorderPoint</td>
-                    </tr>
-                    <tr>
-                        <th>标准成本:</th>
-                        <td>@Model.ProductInfo.StandardCost</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-            <div class="table-responsive">
-                <table class="table">
-                    @foreach (var item in Model.ProductPhotos)
-                    {
-                        <tr>
-                            <td><img src="data:image/gif;base64,@Convert.ToBase64String(item.LargePhoto)"/></td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
-            <!-- /.col -->
-        </div>
-        <!-- /.row -->
-    </div>
-
-    <div class="row row-border">
-        <div class="col-sm-4">
-            <h3>成本历史纪录</h3>
-            <table class="table table-bordered">
-                <tr>
-                    <th>标准成本</th>
-                    <th>开始日期</th>
-                    <th>结束日期</th>
-                </tr>
-                @foreach (var item in Model.ProductCostHistories)
-                {
-                    <tr>
-                        <td>@item.StandardCost</td>
-                        <td>@item.StartDate</td>
-                        <td>@item.EndDate</td>
-                    </tr>
-                }
-            </table>
-        </div>
-        <div class="col-sm-8">
-            <h3>评论纪录</h3>
-            <table class="table table-bordered">
-                <tr>
-                    <th>评论标题</th>
-                    <th>评论时间</th>
-                    <th>评论人邮件地址</th>
-                    <th>评分</th>
-                    <th>留言</th>
-                </tr>
-                @foreach (var item in Model.ProductReviews)
-                {
-                    <tr>
-                        <td>@item.ReviewerName</td>
-                        <td>@item.ReviewDate</td>
-                        <td>@item.EmailAddress</td>
-                        <td>@item.Rating</td>
-                        <td>@item.Comments</td>
-                    </tr>
-                }
-            </table>
-        </div>
-    </div>
-</section>
-<!-- /.content -->
-<div class="clearfix"></div>

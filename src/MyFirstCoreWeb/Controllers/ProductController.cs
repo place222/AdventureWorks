@@ -51,5 +51,17 @@ namespace MyFirstCoreWeb.Controllers
             
             return View(model);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> ModelDetail(int id)
+        {
+            var model = await _productService.GetProductModelDetailByIdAsync(id);
+
+            return View(model);
+        }
     }
 }

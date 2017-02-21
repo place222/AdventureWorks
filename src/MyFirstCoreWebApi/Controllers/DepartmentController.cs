@@ -57,6 +57,7 @@ namespace MyFirstCoreWebApi.Controllers
                 throw;
             }
         }
+
         [Route("DeleteDepartmentById")]
         [HttpGet]
         public async Task DeleteDepartmentById([FromQuery]int departmentId)
@@ -71,7 +72,35 @@ namespace MyFirstCoreWebApi.Controllers
                 throw;
             }
         }
+        [Route("AddDepartment")]
+        [HttpPost]
+        public async Task AddDepartment([FromForm] DepartmentDto input)
+        {
+            try
+            {
+                await _departmentService.AddDepartmentAsync(input);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
 
+        [Route("UpdateDepartment")]
+        [HttpPost]
+        public async Task UpdateDepartment([FromForm] DepartmentDto input)
+        {
+            try
+            {
+                await _departmentService.UpdateDepartmentAsync(input);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex.GetBaseException().Message);
+                throw;
+            }
+        }
         [Route("GetGroups")]
         [HttpPost]
         public async Task<IEnumerable<GroupDto>> GetGroupsAsync()

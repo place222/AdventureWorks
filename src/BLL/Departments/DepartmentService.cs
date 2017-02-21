@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BLL.Departments.Dtos;
 using BLL.Employees.Dtos;
+using DAL.Entities.HumanResources;
 using DAL.Repositories;
 
 namespace BLL.Departments
@@ -27,7 +28,7 @@ namespace BLL.Departments
 
         public async Task<BasePageDto<DepartmentDto>> GetDepartmentsByPageAsync(BasePageInput input)
         {
-            var result = await _departmentRepository.GetDepartmentsByPageAsync(input.Start, input.Length);
+            var result = await _departmentRepository.GetDepartmentsByPageAsync(input.Start, input.Length, input.Search);
 
             return Mapper.Map<BasePageDto<DepartmentDto>>(result);
         }
@@ -42,6 +43,16 @@ namespace BLL.Departments
         public async Task DeleteDepartmentByIdAsync(int departmentId)
         {
             await _departmentRepository.DeleteDepartmentByIdAsync(departmentId);
+        }
+
+        public async Task AddDepartmentAsync(DepartmentDto input)
+        {
+            await _departmentRepository.AddDepartmentAsync(Mapper.Map<Department>(input));
+        }
+
+        public async Task UpdateDepartmentAsync(DepartmentDto input)
+        {
+            await _departmentRepository.UpdateDepartmentAsync(Mapper.Map<Department>(input));
         }
     }
 }

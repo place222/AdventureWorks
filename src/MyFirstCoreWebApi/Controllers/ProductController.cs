@@ -63,7 +63,6 @@ namespace MyFirstCoreWebApi.Controllers
                 throw;
             }
         }
-
         [Route("AddProductModel")]
         [HttpPost]
         public async Task AddProductModel([FromBody] AddProductModelInput input)

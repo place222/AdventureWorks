@@ -39,45 +39,46 @@ namespace BLL
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<EmployeeDomain, EmployeeDto>();
-                config.CreateMap<Department, DepartmentDto>();
-                config.CreateMap<GroupDomain, GroupDto>();
-                config.CreateMap<EmployeeDetailDomain, EmployeeDetailDto>();
-                config.CreateMap<EmailAddresses, EmailAddressesDto>();
-                config.CreateMap<EmployeeAddressDomain, EmployeeAddressDto>();
-                config.CreateMap<EmployeeInfoDomain, EmployeeInfoDto>();
-                config.CreateMap<EmployeeContactDomain, EmployeeContactDto>();
-                config.CreateMap<EmployeePhoneDomain, EmployeePhoneDto>();
-                config.CreateMap<ProductModel, ProductModelDto>();
-                config.CreateMap<ProductDomain, ProductDto>();
+                config.CreateMap<EmployeeDomain, EmployeeDto>().ReverseMap();
+                config.CreateMap<Department, DepartmentDto>().ReverseMap();
+                config.CreateMap<GroupDomain, GroupDto>().ReverseMap();
+                config.CreateMap<EmployeeDetailDomain, EmployeeDetailDto>().ReverseMap();
+                config.CreateMap<EmailAddresses, EmailAddressesDto>().ReverseMap();
+                config.CreateMap<EmployeeAddressDomain, EmployeeAddressDto>().ReverseMap();
+                config.CreateMap<EmployeeInfoDomain, EmployeeInfoDto>().ReverseMap();
+                config.CreateMap<EmployeeContactDomain, EmployeeContactDto>().ReverseMap();
+                config.CreateMap<EmployeePhoneDomain, EmployeePhoneDto>().ReverseMap();
+                config.CreateMap<ProductModel, ProductModelDto>().ReverseMap();
+                config.CreateMap<ProductDomain, ProductDto>().ReverseMap();
 
-                config.CreateMap<ProductDetailDomain, ProductDetailDto>();
-                config.CreateMap<ProductInfoDomain, ProductInfoDto>();
-                config.CreateMap<ProductPhoto, ProductDetailPhotoDto>();
-                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>();
-                config.CreateMap<ProductReview, ProductReviewDto>();
-                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>();
-                config.CreateMap<ProductInventoryDomain, ProductInventoryDto>();
+                config.CreateMap<ProductDetailDomain, ProductDetailDto>().ReverseMap();
+                config.CreateMap<ProductInfoDomain, ProductInfoDto>().ReverseMap();
+                config.CreateMap<ProductPhoto, ProductDetailPhotoDto>().ReverseMap();
+                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>().ReverseMap();
+                config.CreateMap<ProductReview, ProductReviewDto>().ReverseMap();
+                config.CreateMap<ProductCostHistory, ProductDetailCostHistoryDto>().ReverseMap();
+                config.CreateMap<ProductInventoryDomain, ProductInventoryDto>().ReverseMap();
+                config.CreateMap<ProductListPriceHistory, ProductDetailListPriceHistoryDto>().ReverseMap();
 
-                config.CreateMap<ProductModelDetailDoamin, ProductModelDetailDto>();
-                config.CreateMap<ProductDescription, ProductDescriptionDto>();
-                config.CreateMap<Illustration, IllustrationDto>();
+                config.CreateMap<ProductModelDetailDoamin, ProductModelDetailDto>().ReverseMap();
+                config.CreateMap<ProductDescription, ProductDescriptionDto>().ReverseMap();
+                config.CreateMap<Illustration, IllustrationDto>().ReverseMap();
 
                 config.CreateMap<PageDomain<EmployeeDomain>, BasePageDto<EmployeeDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord)).ReverseMap();
 
                 config.CreateMap<PageDomain<Department>, BasePageDto<DepartmentDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord)).ReverseMap();
 
                 config.CreateMap<PageDomain<ProductModel>, BasePageDto<ProductModelDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord)).ReverseMap();
 
                 config.CreateMap<PageDomain<ProductDomain>, BasePageDto<ProductDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
-                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord));
+                    .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord)).ReverseMap();
             });
         }
     }
