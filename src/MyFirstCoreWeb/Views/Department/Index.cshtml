@@ -2,13 +2,13 @@
     <ul class="nav nav-tabs">
         <li class="active"><a href="#tab_1" data-toggle="tab">部门信息</a></li>
         <li><a href="#tab_2" data-toggle="tab">组织机构</a></li>
-        <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+        <li><a href="#tab_3" data-toggle="tab">部门统计</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="tab_1">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">部门列表</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -19,8 +19,7 @@
                                 <td>部门名称</td>
                                 <td>组别名称</td>
                                 <td>部门编号</td>
-                                <td>更新</td>
-                                <td>删除</td>
+                                <td>操作</td>
                             </tr>
                         </thead>
                     </table>
@@ -53,7 +52,8 @@
     </div>
     <!-- /.tab-content -->
 </div>
-<!-- nav-tabs-custom -->
+
+<!-- 修改 -->
 <div class="example-modal">
     <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -69,9 +69,9 @@
                     <!-- form start -->
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">名称</label>
+                            <label for="Name" class="col-sm-2 control-label">名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
+                                <input type="text" class="form-control" id="Name" placeholder="Email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -94,9 +94,7 @@
     </div>
     <!-- /.modal -->
 </div>
-
-
-
+<!--删除确认-->
 <div class="example-modal">
     <div class="modal" id="myDeleteModal">
         <div class="modal-dialog">
@@ -115,106 +113,149 @@
                     <button type="button" class="btn btn-primary" id="deleteBtn">Save changes</button>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<!--增加-->
+<div class="example-modal">
+    <div class="modal" id="addNewModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Default Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="newName" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="groups" class="col-sm-2 control-label">组</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="newGroup"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="addNew">Save changes</button>
+                </div>
+            </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
 </div>
+
 @section Scripts{
     <script>
-        (function($) {
+        (function ($) {
             var dt = {};
 
-            $(function() {
+            $(function () {
                 dt = $("#example1")
                     .DataTable({
+                        dom: '<"row"<"col-sm-6"l><"col-sm-3"<"#addNew">><"col-sm-3"f>><"row"t><"row"<"col-sm-6"i><"col-sm-6"p>>',//dom结构
                         ajax: {
                             type: 'POST',
-                            url: liuyang + '/api/Department/GetDepartmentsByPage',
-                            data: function(d) {
+                            url: coreweb.servicesUrl + '/api/Department/GetDepartmentsByPage',
+                            data: function (d) { //传出的转换  解耦啦
                                 console.log(d);
                                 return { start: d.start, length: d.length, search: d.search.value };
                             },
-                            dataSrc: function(json) {
+                            dataSrc: function (json) {
                                 return json.data;
+                            },
+                            dataFilter: function (data) { //终于找到你了 服务器返回数据的处理转换
+                                console.log(data);
+                                var json = jQuery.parseJSON(data);
+                                console.log(json);
+                                return JSON.stringify(json);
                             }
                         },
                         serverSide: true,
+                        order: [[0, 'desc'], [1, 'desc']], //排序
                         columnDefs: [
                             {
-                                targets: [-1, -2],
-                                orderable: false
-                            },
-                            {
-                                targets: [1, 2, 3],
-                                orderData: [0, 1, 2] //会传送3个排序字段和方式和数据
+                                targets: [-1],
+                                orderable: false,
+                                searchable: false
                             }
                         ],
                         columns: [
-                            { data: "departmentID" },
+                            { data: "departmentID", name: '你好' },
                             { data: "name" },
                             { data: 'groupName' },
                             { data: 'modifiedDate' },
                             {
                                 data: "departmentID",
-                                render: function(data, type, row, meta) {
+                                render: function (data, type, row, meta) {
                                     return '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' +
                                         data +
-                                        '">更新</a>';
-                                }
-                            },
-                            {
-                                data: 'departmentID',
-                                render: function(data) {
-                                    return '<a href="#"  data-toggle="modal" data-target="#myDeleteModal" data-whatever="' +
+                                        '">更新</a>/<a href="#"  data-toggle="modal" data-target="#myDeleteModal" data-whatever="' +
                                             data +
                                             '">删除</a>';
                                 }
                             }
                         ]
                     });
+                $("#addNew").html('<a href="#" data-toggle="modal" data-target="#addNewModal" class="pull-right">添加</button>');
             });
 
-            $(function() {
+            $(function () {
                 $('#myModal')
                     .on('show.bs.modal',
-                        function(event) {
+                        function (event) {
                             var id = $(event.relatedTarget).data('whatever');
-                            $.ajax({
-                                type: 'GET',
-                                url: liuyang + '/api/Department/GetDepartmentById?departmentId=' + id,
-                                success: function(data) {
-                                    console.log(data);
-                                }
-                            });
+
                             $.ajax({
                                 type: 'POST',
-                                url: liuyang + '/api/Department/GetGroups',
-                                success: function(data) {
+                                url: coreweb.servicesUrl + '/api/Department/GetGroups',
+                                success: function (data) {
                                     for (var i = 0; i < data.length; i++) {
                                         $('#groups').append('<option>' + data[i].groupName + '</option>');
                                     }
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: coreweb.servicesUrl + '/api/Department/GetDepartmentById?departmentId=' + id,
+                                        success: function (data) {
+                                            $("#Name").val(data.name);
+                                            $("#groups option")
+                                                .each(function (index, ele) {
+                                                    if ($(ele).val() == data.groupName) {
+                                                        $(ele).style('class', 'active');
+                                                    }
+                                                });
+                                        }
+                                    });
                                 }
                             });
-                        })
-                    .on('hidden.bs.modal',
-                        function(event) {
-                            console.log(event);
                         });
+
             });
 
-            $(function() {
+            $(function () {
                 $('#myDeleteModal')
                     .on('show.bs.modal',
-                        function(event) {
+                        function (event) {
                             $('#deleteBtn')
-                                .click(function() {
+                                .click(function () {
                                     var id = $(event.relatedTarget).data('whatever');
                                     $.ajax({
                                         type: 'GET',
-                                        url: liuyang + '/api/Department/DeleteDepartmentById?departmentId=' + id,
-                                        success: function(data) {
+                                        url: coreweb.servicesUrl + '/api/Department/DeleteDepartmentById?departmentId=' + id,
+                                        success: function (data) {
                                             $('#myDeleteModal').modal('hide');
                                             dt.ajax.reload();
                                         }

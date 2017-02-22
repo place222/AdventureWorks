@@ -107,7 +107,7 @@
                 .DataTable({
                     ajax: {
                         type: 'POST',
-                        url: liuyang + '/api/Product/GetProductsByPage',
+                        url: coreweb.servicesUrl + '/api/Product/GetProductsByPage',
                         data: function (d) {
                             console.log(d);
                             return { start: d.start, length: d.length };
@@ -156,7 +156,7 @@
                         alert($(event.relatedTarget).data('whatever'));
                         $.ajax({
                             type: 'POST',
-                            url: liuyang + '/api/Department/GetGroups',
+                            url: coreweb.servicesUrl + '/api/Department/GetGroups',
                             success: function (data) {
                                 for (var i = 0; i < data.length; i++) {
                                     $('#groups').append('<option>' + data[i].groupName + '</option>');

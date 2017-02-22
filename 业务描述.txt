@@ -58,3 +58,7 @@ Production.ProductModel					与产品关联的产品型号。例如，Mountain-100 或 LL Touri
 Production.ScrapReason					生产过程中拒绝自行车或自行车零件的常见原因列表。例如，在“上漆”生产车间，废弃未上漆好的自行车框架的原因是“上漆失败”。
 Production.WorkOrder					定义为了满足当前和未来销售的需要而必须生产的产品及其数量。
 Production.WorkOrderRouting				每一工作订单的详细信息，包括在生产或装配过程中产品经历的生产车间的顺序。例如，自行车手柄在“框架成型”生产车间生产。生产出来后，再将它们移交到“框架焊接”生产车间进行其他作业，然后移送到“装配”生产车间将其装配到自行车框架上。
+
+
+
+editor.datatable破解 remaining 查找 改日期计算的-为+就可以了吧

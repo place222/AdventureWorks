@@ -126,7 +126,6 @@ namespace DAL.Repositories
                     model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
                     model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();
                     //TODO::还有联系方式映射 和 电话
-
                 }
             }
             return model;

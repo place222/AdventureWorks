@@ -1,4 +1,9 @@
 ﻿// Write your Javascript code.
-(function() {
-    liuyang = "http://localhost:17799";
-})();
+var coreweb = (function ($) {
+
+    var serviceUrl = "http://localhost:17799";
+
+    return {
+        servicesUrl: serviceUrl
+    }
+})($);
