@@ -26,7 +26,12 @@
 
         $(document).ready(function () {
             editor = new $.fn.dataTable.Editor({
-                ajax: "/ajax_roots.json",
+                ajax: {
+                    create: {
+                        type:'POST',
+                        url: '/Home/Index' //todo::明天继续
+                    }
+                },
                 table: "#example",
                 fields: [{
                     label: "First name:",
