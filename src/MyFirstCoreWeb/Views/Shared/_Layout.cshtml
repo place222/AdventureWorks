@@ -12,23 +12,22 @@
     <title>@ViewData["Title"] - MyFirstCoreWeb</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css" />
-        <link rel="stylesheet" href="~/lib/admin-lte/plugins/datatables/dataTables.bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css" />
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css" />
-        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css"/>
+        <link href="~/lib/DataTables-1.10.13/media/css/dataTables.bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/DataTables-1.10.13/extensions/Select/css/select.bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/Editor/css/editor.bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css"/>
+        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css"/>
+        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css"/>
+        <link rel="stylesheet" href="~/css/site.css"/>
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.min.css" />
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.min.css" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body class="skin-blue sidebar-mini wysihtml5-supported" data-spy="scroll" data-target="#scrollspy">
@@ -618,16 +617,21 @@
     </div>
 
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/jstree/dist/jstree.js"></script>
-        <script src="~/lib/admin-lte/plugins/datatables/jquery.dataTables.js"></script>
-        <script src="~/lib/admin-lte/plugins/datatables/dataTables.bootstrap.js"></script>
-        <script src="~/lib/admin-lte/dist/js/app.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
+<environment names="Development">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jstree/dist/jstree.js"></script>
+    <script src="~/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
+    <script src="~/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
+    <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.js"></script>
+    <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/buttons.bootstrap.js"></script>
+    <script src="~/lib/DataTables-1.10.13/extensions/Select/js/dataTables.select.js"></script>
+    <script src="~/lib/Editor/js/dataTables.editor.js"></script>
+    <script src="~/lib/Editor/js/editor.bootstrap.js"></script>
+    <script src="~/lib/admin-lte/dist/js/app.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
