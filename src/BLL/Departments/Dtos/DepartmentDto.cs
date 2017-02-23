@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace BLL.Departments.Dtos
 {
@@ -10,7 +11,7 @@ namespace BLL.Departments.Dtos
         /// <summary>
         /// 编号
         /// </summary>
-        public int DepartmentID { get; set; }
+        public string DepartmentID { get; set; }
         /// <summary>
         /// 部门名称
         /// </summary>

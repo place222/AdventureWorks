@@ -14,7 +14,7 @@ namespace DAL.Repositories
         Task<IEnumerable<GroupDomain>> GetGroupsAsync();
         Task<Department> GetDepartmentByIdAsync(int departmentId);
         Task DeleteDepartmentByIdAsync(int departmentId);
-        Task AddDepartmentAsync(Department department);
+        Task<Department> AddDepartmentAsync(Department department);
         Task UpdateDepartmentAsync(Department department);
     }
 }

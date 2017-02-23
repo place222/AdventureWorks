@@ -74,11 +74,13 @@ namespace MyFirstCoreWebApi.Controllers
         }
         [Route("AddDepartment")]
         [HttpPost]
-        public async Task AddDepartment([FromForm] DepartmentDto input)
+        public async Task<BaseResponse<IEnumerable<DepartmentDto>>> AddDepartment([FromForm] DepartmentDto input)
         {
             try
             {
-                await _departmentService.AddDepartmentAsync(input);
+                //简易测试一下Editor能不能自动刷新 需要是一个数组结构可以进行自动刷新 看看文档看看怎么改
+                var model = await _departmentService.AddDepartmentAsync(input);
+                return new BaseResponse<IEnumerable<DepartmentDto>> { Data = new[] { model } };
             }
             catch (Exception ex)
             {
