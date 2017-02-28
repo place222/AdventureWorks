@@ -11,6 +11,25 @@
 </table>
 @section Scripts{
     <script>
+        //{
+        //"data": [
+        //    {
+        //        "DT_RowId":   "row_29",
+        //        "first_name": "Fiona",
+        //        "last_name":  "Green",
+        //        "position":   "Chief Operating Officer (COO)",
+        //        "office":     "San Francisco",
+        //        "extn":       "2947",
+        //        "salary":     "850000",
+        //        "start_date": "2010-03-11"
+        //    }
+        //]
+        //}
+        //问题描述：服务器调用创建后返回的是个简单的
+        //{
+        //    errorCode:1
+        //}
+        //官方说需要上面的结构，我现在要找个地方构建一个上面的 要让接下来的表格刷新等后续操作可以继续
         var editor; // use a global for the submit and return data rendering in the examples
 
         $(document).ready(function () {
@@ -27,9 +46,9 @@
                 table: "#example",
                 idSrc: "departmentID",
                 fields: [{
-                    label: "名称:",
-                    name: "name"
-                },
+                        label: "名称:",
+                        name: "name"
+                    },
                     {
                         label: "名称:",
                         name: "groupName"
