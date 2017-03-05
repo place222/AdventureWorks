@@ -11,7 +11,7 @@ namespace BLL.Departments.Dtos
         /// <summary>
         /// 编号
         /// </summary>
-        public string DepartmentID { get; set; }
+        public int DepartmentID { get; set; }
         /// <summary>
         /// 部门名称
         /// </summary>

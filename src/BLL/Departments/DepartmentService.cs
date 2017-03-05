@@ -45,10 +45,9 @@ namespace BLL.Departments
             await _departmentRepository.DeleteDepartmentByIdAsync(departmentId);
         }
 
-        public async Task<DepartmentDto> AddDepartmentAsync(DepartmentDto input)
+        public async Task AddDepartmentAsync(DepartmentDto input)
         {
-            var model = await _departmentRepository.AddDepartmentAsync(Mapper.Map<Department>(input));
-            return Mapper.Map<DepartmentDto>(model);
+            await _departmentRepository.AddDepartmentAsync(Mapper.Map<Department>(input));
         }
 
         public async Task UpdateDepartmentAsync(DepartmentDto input)

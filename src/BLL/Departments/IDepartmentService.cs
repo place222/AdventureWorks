@@ -14,7 +14,7 @@ namespace BLL.Departments
         Task<BasePageDto<DepartmentDto>> GetDepartmentsByPageAsync(BasePageInput input);
         Task<DepartmentDto> GetDepartmentByIdAsync(int departmentId);
         Task DeleteDepartmentByIdAsync(int departmentId);
-        Task<DepartmentDto> AddDepartmentAsync(DepartmentDto input);
+        Task AddDepartmentAsync(DepartmentDto input);
         Task UpdateDepartmentAsync(DepartmentDto input);
     }
 }

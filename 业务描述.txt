@@ -62,3 +62,26 @@ Production.WorkOrderRouting				Ã¿Ò»¹¤×÷¶©µ¥µÄÏêÏ¸ÐÅÏ¢£¬°üÀ¨ÔÚÉú²ú»ò×°Åä¹ý³ÌÖÐ²úÆ
 
 
 editor.datatableÆÆ½â remaining ²éÕÒ ¸ÄÈÕÆÚ¼ÆËãµÄ-Îª+¾Í¿ÉÒÔÁË°É
+
+3.ÏúÊÛºÍÓªÏú·½°¸
+¿Í»§ÀàÐÍ
+×÷Îª×ÔÐÐ³µÉú²ú¹«Ë¾£¬Adventure Works Cycles ÓµÓÐÁ½ÖÖ¿Í»§£º
+¸öÈË¡£¼´£¬´Ó Adventure Works Cycles ÔÚÏßÉÌµê¹ºÂò²úÆ·µÄÏû·ÑÕß¡£
+ÉÌµê¡£¼´£¬´Ó Adventure Works Cycles ÏúÊÛ´ú±í´¦¹ºÂò²úÆ·ºó½øÐÐ×ªÊÛµÄÁãÊÛµê»òÅú·¢µê¡£
+Ã¿Î»¿Í»§ÔÚ Customer ±íÖÐ¶¼ÓÐÒ»Ìõ¼ÇÂ¼¡£CustomerType ÁÐÖ¸Ê¾¿Í»§ÊÇ¸öÈËÏû·ÑÕß (CustomerType= 'I') »¹ÊÇÉÌµê (CustomerType= 'S')¡£ÕâÐ©¿Í»§ÀàÐÍËùÌØÓÐµÄÊý¾Ý·Ö±ðÔÚ Individual ºÍ Store ±íÖÐ½øÐÐÎ¬»¤¡£
+
+4.²É¹º·½°¸ºÍ¹©Ó¦ÉÌ·½°¸
+ÔÚ Adventure Works Cycles£¬²É¹º²¿ÃÅ¹ºÂò Adventure Works Cycles ×ÔÐÐ³µÉú²úÖÐÊ¹ÓÃµÄÔ­²ÄÁÏºÍÁã¼þ¡£Adventure Works Cycles Ò²¹ºÂòÒ»Ð©²úÆ·ÒÔ½øÐÐ×ªÊÛ£¬ÀýÈç£¬×ÔÐÐ³µ×°ÊÎ¼þºÍ×ÔÐÐ³µ¸½¼þ£¬ÏñË®Æ¿ºÍ´òÆøÍ²¡£ÓÐ¹ØÕâÐ©²úÆ·¼°Æä¹©Ó¦ÉÌµÄÐÅÏ¢´æ´¢ÔÚ AdventureWorks Ê¾ÀýÊý¾Ý¿âÖÐ¡£
+±¾Ö÷ÌâÏêÏ¸½éÉÜÁËÊ¾ÀýÊý¾Ý¿âÖÐµÄ¹©Ó¦ÉÌ¡¢ÓëÖ÷Òª¹©Ó¦ÉÌÏà¹ØµÄ±íµÄ¼Ü¹¹¹ØÏµÍ¼ÒÔ¼°ÓÃÓÚËµÃ÷³£ÓÃ±í¹ØÏµµÄ²éÑ¯Ê¾Àý¡£
+Person.Address							ËùÓÐ¿Í»§µÄÍ¨ÐÅµØÖ·ÐÅÏ¢¡£
+										¿Í»§¿ÉÄÜ»áÓÐ¶à¸öµØÖ·¡£ÀýÈç£¬¿Í»§¿ÉÄÜÓÐÒ»¸öÕÊµ¥µØÖ·ºÍÒ»¸ö²»Í¬µÄ·¢»õµØÖ·¡£
+Person.Contact							¹©Ó¦ÉÌ¹ÍÔ±µÄÐÕÃû£¬Adventure Works Cycles ²É¹º´úÀíÏòÕâÐ©¹©Ó¦ÉÌ¹ÍÔ±¶©¹º²úÆ·¡£
+										Ò»¸ö¹©Ó¦ÉÌ¿ÉÄÜÓÐ¶à¸öÁªÏµÈË¡£ÀýÈç£¬Ò»¸öÏúÊÛ´úÀíºÍÒ»¸öÏúÊÛ¾­Àí¡£Adventure Works Cycles ²É¹º´úÀí¿ÉÄÜ½«ÏúÊÛ´úÀí×÷Îª¿Í»§µÄÖ÷ÒªÁªÏµÈË£¬½«ÏúÊÛ¾­Àí×÷ÎªµÚ¶þÁªÏµÈË¡£
+Production.ProductVendor				½«¹©Ó¦ÉÌÓ³Éäµ½ÆäÌá¹©µÄ²úÆ·¡£
+										Ò»ÖÖ²úÆ·¿ÉÄÜÓÉ¶à¸ö¹©Ó¦ÉÌÌá¹©£¬Ò»¸ö¹©Ó¦ÉÌÒ²¿ÉÄÜÌá¹©¶àÖÖ²úÆ·¡£
+Purchasing.PurchaseOrderDetail			²É¹º¶©µ¥µÄÏêÏ¸ÐÅÏ¢£¬ÀýÈç£¬¶©¹ºµÄ²úÆ·¡¢ÊýÁ¿ºÍµ¥¼Û¡£
+Purchasing.PurchaseOrderHeader			²É¹º¶©µ¥µÄÕªÒªÐÅÏ¢£¬ÀýÈç£¬Ó¦¸¶¿î×Ü¼Æ¡¢¶©¹ºÈÕÆÚºÍ¶©µ¥×´Ì¬¡£
+Purchasing.ShipMethod					ÓÃÓÚÎ¬»¤²úÆ·±ê×¼·¢»õ·½·¨µÄ²éÕÒ±í¡£
+Purchasing.Vendor						¹©Ó¦ÉÌµÄÏêÏ¸ÐÅÏ¢£¬ÀýÈç£¬¹©Ó¦ÉÌµÄÃû³ÆºÍÕÊºÅ¡£
+Purchasing.VendorAddress				½«¿Í»§Á´½Óµ½ Address ±íÖÐµÄµØÖ·ÐÅÏ¢¡£
+Purchasing.VendorContact				ËùÓÐ¿Í»§µÄ½ÖµÀµØÖ·ÐÅÏ¢¡£

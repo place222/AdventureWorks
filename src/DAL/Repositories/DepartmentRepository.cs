@@ -81,7 +81,7 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<Department> AddDepartmentAsync(Department department)
+        public async Task AddDepartmentAsync(Department department)
         {
             var sql = @"INSERT INTO HumanResources.Department
                                 ( Name, GroupName, ModifiedDate )
@@ -98,7 +98,6 @@ namespace DAL.Repositories
                 if (result != 1)
                     throw new Exception("插入错误!");
             }
-            return new Department() {DepartmentID = 100, GroupName = department.GroupName, Name = department.Name};
         }
 
         public async Task UpdateDepartmentAsync(Department department)

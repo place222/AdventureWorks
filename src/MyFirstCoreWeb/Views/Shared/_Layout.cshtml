@@ -12,17 +12,17 @@
     <title>@ViewData["Title"] - MyFirstCoreWeb</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
-        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css"/>
+        <link rel="stylesheet" href="~/lib/ionicons/css/ionicons.css" />
         <link href="~/lib/DataTables-1.10.13/media/css/dataTables.bootstrap.css" rel="stylesheet" />
         <link href="~/lib/DataTables-1.10.13/extensions/Buttons/css/buttons.bootstrap.css" rel="stylesheet" />
         <link href="~/lib/DataTables-1.10.13/extensions/Select/css/select.bootstrap.css" rel="stylesheet" />
         <link href="~/lib/Editor/css/editor.bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css"/>
-        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css"/>
-        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css"/>
-        <link rel="stylesheet" href="~/css/site.css"/>
+        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css" />
+        <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css" />
+        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -352,6 +352,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Product" asp-action="ProductModel"><i class="fa fa-circle-o"></i> 个人</a></li>
+                            <li><a asp-controller="Product" asp-action="Category"><i class="fa fa-circle-o"></i> 商店</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -373,6 +377,10 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Product" asp-action="ProductModel"><i class="fa fa-circle-o"></i> 供应商</a></li>
+                            <li><a asp-controller="Product" asp-action="Category"><i class="fa fa-circle-o"></i> 采购</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -617,21 +625,21 @@
     </div>
 
 
-<environment names="Development">
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery-ui/jquery-ui.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="~/lib/jstree/dist/jstree.js"></script>
-    <script src="~/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
-    <script src="~/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
-    <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.js"></script>
-    <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/buttons.bootstrap.js"></script>
-    <script src="~/lib/DataTables-1.10.13/extensions/Select/js/dataTables.select.js"></script>
-    <script src="~/lib/Editor/js/dataTables.editor.js"></script>
-    <script src="~/lib/Editor/js/editor.bootstrap.js"></script>
-    <script src="~/lib/admin-lte/dist/js/app.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-</environment>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jstree/dist/jstree.js"></script>
+        <script src="~/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
+        <script src="~/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
+        <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.js"></script>
+        <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/buttons.bootstrap.js"></script>
+        <script src="~/lib/DataTables-1.10.13/extensions/Select/js/dataTables.select.js"></script>
+        <script src="~/lib/Editor/js/dataTables.editor.js"></script>
+        <script src="~/lib/Editor/js/editor.bootstrap.js"></script>
+        <script src="~/lib/admin-lte/dist/js/app.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"

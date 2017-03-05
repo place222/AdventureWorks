@@ -10,59 +10,66 @@
 
 </table>
 @section Scripts{
-    <script>
+    <script type="text/javascript">
         var editor; // use a global for the submit and return data rendering in the examples
+        $(document)
+            .ready(function () {
 
-        $(document).ready(function () {
-            editor = new $.fn.dataTable.Editor({
-                ajax: {
-                    create: {
-                        url: coreweb.servicesUrl + '/api/Department/AddDepartment',
-                        type: 'POST',
-                        data: function (data) {
-                            return { name: data.data[0]['name'], groupName: data.data[0]['groupName'] };
+                editor = new $.fn.dataTable.Editor({
+                    ajax: {
+                        create: {
+                            url: coreweb.servicesUrl + '/api/Department/AddDepartment',
+                            type: 'POST',
+                            data: function (data) {
+                                return { name: data.data[0]['name'], groupName: data.data[0]['groupName'] };
+                            }
                         }
-                    }
-                },
-                table: "#example",
-                idSrc: "departmentID",
-                fields: [{
-                    label: "名称:",
-                    name: "name"
-                },
-                    {
-                        label: "名称:",
-                        name: "groupName"
-                    }
-                ]
+                    },
+                    table: "#example",
+                    idSrc: "departmentID",
+                    fields: [
+                        { label: "名称:", name: "name" },
+                        { label: "组名称:", name: "groupName" }
+                    ]
+                });
+
+                editor.on('postSubmit',
+                    function (e, json, data, action) {
+                        console.log(json);
+                        console.log(data);
+                        json.data = [{departmentID:1000,groupName:'测试',name:'测试吧',modifiedDate:'2017-03-03'}]
+                        console.log(json);
+                    });
+
+                $('#example')
+                    .DataTable({
+                        dom: "Bfrtip",
+                        ajax: {
+                            type: 'POST',
+                            url: coreweb.servicesUrl + '/api/Department/GetDepartmentsByPage',
+                            data: function (d) {
+                                return { start: d.start, length: d.length, search: d.search.value };
+                            },
+                            dataSrc: function (data) {
+                                return data.data;
+                            }
+                        },
+                        serverSide: true,
+                        columns: [
+                            { data: 'departmentID' },
+                            { data: 'name' },
+                            { data: 'groupName' },
+                            { data: 'modifiedDate' }
+                        ],
+                        select: true,
+                        buttons: [
+                            { extend: "create", editor: editor },
+                            { extend: "edit", editor: editor },
+                            { extend: "remove", editor: editor }
+                        ]
+                    });
+
             });
 
-            $('#example').DataTable({
-                dom: "Bfrtip",
-                ajax: {
-                    type: 'POST',
-                    url: coreweb.servicesUrl + '/api/Department/GetDepartmentsByPage',
-                    data: function (d) {
-                        return { start: d.start, length: d.length, search: d.search.value };
-                    },
-                    dataSrc: function (data) {
-                        return data.data;
-                    }
-                },
-                serverSide: true,
-                columns: [
-                    { data: 'departmentID' },
-                    { data: 'name' },
-                    { data: 'groupName' },
-                    { data: 'modifiedDate' }
-                ],
-                select: true,
-                buttons: [
-                    { extend: "create", editor: editor },
-                    { extend: "edit", editor: editor },
-                    { extend: "remove", editor: editor }
-                ]
-            });
-        });
     </script>
 }

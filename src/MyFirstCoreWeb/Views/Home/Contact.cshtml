@@ -1,17 +1,94 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿
+
+<table class="table" id="ta">
+    <thead>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        (function ($) {
+            $.extend({
+                isArray: function (obj) {
+                    return typeof obj === 'object' && obj instanceof Array && obj.constructor == Array;
+                }
+            })
+        }($));
+
+        //封装
+        (function ($) {
+
+            var MyDataTable = function (options) {
+                this.options = options;
+                this._init();
+            }
+
+            MyDataTable.prototype = {
+
+                _init: function () {
+                    this._$table = $('table[id="' + this.options.table + '"]');
+                    this._addData($('table[id="' + this.options.table + '"] > tbody')[0]);
+                    return this;
+                },
+
+                _addData: function (dom) {
+                    if (typeof this.options.data === 'function') {
+                        this.options.data();
+                    } else if ($.isArray(this.options.data)) {
+                        $.each(this.options.data, function (index, obj) {
+                            var tds = "<tr>";
+                            var i;
+                            var names = Object.getOwnPropertyNames(obj);
+                            for (i = 0; i < names.length; i++) {
+                                tds += "<td>" + obj[names[i]] + "</td>"
+                            }
+                            tds += "</tr>";
+                            $(dom).append(tds);
+                        });
+                    }
+                }
+            }
+
+            $.MyDataTable = function (options) {
+                return new MyDataTable(options);
+            }
+
+
+        }($));
+
+
+
+
+        //试用
+        $(function () {
+            a = [1, 2, 3];
+            console.log($.isArray(a));
+            //初始化成数据的方式
+            dt1 = $.MyDataTable({
+                table: 'ta',
+                data: [
+                { id: 1, name: "hello world1", time: '1' },
+                { id: 2, name: "hello world2" }
+                ]
+            });
+
+            //初始化data采用函数的方式
+            dt2 = $.MyDataTable({
+                table: 'ta',
+                data: function () {
+                    return [
+                        { id: 1, name: "hello world1", time: '1' },
+                        { id: 2, name: "hello world2" }
+                    ];
+                }
+            });
+        });
+    </script>
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
