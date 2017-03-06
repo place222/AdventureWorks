@@ -13,22 +13,9 @@ namespace MyFirstCoreWeb.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository;
-        private ILogger<DepartmentController> _logger;
-
-        public DepartmentController(IDepartmentRepository departmentRepository, ILoggerFactory loggerFactory)
-        {
-            _departmentRepository = departmentRepository;
-            _logger = loggerFactory.CreateLogger<DepartmentController>();
-        }
-
         public IActionResult Index()
         {
             return View();
-
         }
-        
-
-
     }
 }

@@ -30,93 +30,53 @@ namespace MyFirstCoreWebApi.Controllers
 
         [Route("GetDepartmentsByPage")]
         [HttpPost]
-        public async Task<BasePageDto<DepartmentDto>> GetDepartmentsByPage([FromForm]BasePageInput input)
+        public async Task<BaseOutput<BasePageDto<DepartmentDto>>> GetDepartmentsByPage([FromForm]BasePageInput input)
         {
-            try
-            {
-                return await _departmentService.GetDepartmentsByPageAsync(input);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            var result = new BaseOutput<BasePageDto<DepartmentDto>>();
+
+            result.Data = await _departmentService.GetDepartmentsByPageAsync(input);
+
+            return result;
         }
 
         [Route("GetDepartmentById")]
-        [HttpGet]
-        public async Task<DepartmentDto> GetDepartmentById([FromQuery]int departmentId)
+        [HttpPost]
+        public async Task<BaseOutput<DepartmentDto>> GetDepartmentById([FromQuery]int departmentId)
         {
-            try
-            {
-                return await _departmentService.GetDepartmentByIdAsync(departmentId);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            var result = new BaseOutput<DepartmentDto>();
+
+            result.Data = await _departmentService.GetDepartmentByIdAsync(departmentId);
+
+            return result;
         }
 
         [Route("DeleteDepartmentById")]
-        [HttpGet]
-        public async Task DeleteDepartmentById([FromQuery]int departmentId)
+        [HttpPost]
+        public async Task<BaseOutput> DeleteDepartmentById([FromQuery]int departmentId)
         {
-            try
-            {
-                await _departmentService.DeleteDepartmentByIdAsync(departmentId);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            await _departmentService.DeleteDepartmentByIdAsync(departmentId);
+
+            return new BaseOutput();
         }
         [Route("AddDepartment")]
         [HttpPost]
-        public async Task<object> AddDepartment([FromForm] DepartmentDto input)
+        public async Task<BaseOutput> AddDepartment([FromForm] DepartmentDto input)
         {
-            try
-            {
-                //<BaseResponse<IEnumerable<DepartmentDto>>>
-                //简易测试一下Editor能不能自动刷新 需要是一个数组结构可以进行自动刷新 看看文档看看怎么改
-                await _departmentService.AddDepartmentAsync(input);
-                return new { data=123};
-                //return new BaseResponse<IEnumerable<DepartmentDto>>()
-                //{
-                //    Data = new DepartmentDto[]
-                //    {
-                //        new DepartmentDto
-                //        {
-                //            DepartmentID = 100,
-                //            GroupName = "测试server",
-                //            Name = "测试server",
-                //            ModifiedDate = DateTime.Now
-                //        }
-                //    }
-                //};
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            await _departmentService.AddDepartmentAsync(input);
+
+            return new BaseOutput();
         }
 
         [Route("UpdateDepartment")]
         [HttpPost]
-        public async Task UpdateDepartment([FromForm] DepartmentDto input)
+        public async Task<BaseOutput> UpdateDepartment([FromForm] DepartmentDto input)
         {
-            try
-            {
-                await _departmentService.UpdateDepartmentAsync(input);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            await _departmentService.UpdateDepartmentAsync(input);
+
+            return new BaseOutput();
         }
+
+
         [Route("GetGroups")]
         [HttpPost]
         public async Task<IEnumerable<GroupDto>> GetGroupsAsync()

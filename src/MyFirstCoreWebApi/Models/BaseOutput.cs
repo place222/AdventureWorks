@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 
 namespace MyFirstCoreWebApi.Models
 {
-    public class BaseOutput<T>
+    public class BaseOutput
     {
         public int ErrorCode { get; set; }
         public string ErrorMessage { get; set; }
-        public T Result { get; set; }
-
         public BaseOutput()
         {
             ErrorCode = 200;

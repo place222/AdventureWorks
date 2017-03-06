@@ -30,5 +30,6 @@ namespace BLL.Employees
 
             return Mapper.Map<EmployeeDetailDto>(result);
         }
+
     }
 }

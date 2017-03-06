@@ -10,7 +10,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyFirstCoreWeb</title>
-
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css">
@@ -21,7 +20,6 @@
         <link href="~/lib/Editor/css/editor.bootstrap.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/lib/admin-lte/dist/css/AdminLTE.css" />
         <link rel="stylesheet" href="~/lib/admin-lte/dist/css/skins/_all-skins.css" />
-        <link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
@@ -252,10 +250,10 @@
                         <li class="dropdown user user-menu">
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="~/lib/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">你好 @UserManager.GetUserName(User)!</span>
-                                </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/lib/admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">你好 @UserManager.GetUserName(User)!</span>
+                            </a>
                             }
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -331,8 +329,10 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">导 航 栏</li>
-
-                    <li class="active treeview">
+                    <li class="active">
+                        <a href=""><i class="fa fa-dashboard"></i>仪表盘</a>
+                    </li>
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-dashboard"></i> <span>人力资源</span>
                             <span class="pull-right-container">
@@ -340,9 +340,9 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a asp-controller="Department" asp-action="index"><i class="fa fa-circle-o"></i> 部门管理</a></li>
-                            <li><a asp-controller="Employee" asp-action="index"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-                            <li><a asp-controller="Person" asp-action="index"><i class="fa fa-circle-o"></i> 招聘</a></li>
+                            <li class="active"><a href="#" id="department"><i class="fa fa-circle-o"></i> 部门管理</a></li>
+                            <li><a href="#" id="employee"><i class="fa fa-circle-o"></i> 员工管理</a></li>
+                            <li><a href="#"><i class="fa fa-circle-o"></i> 招聘</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -623,13 +623,10 @@
         <div class="control-sidebar-bg"></div>
 
     </div>
-
-
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/jquery-ui/jquery-ui.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/lib/jstree/dist/jstree.js"></script>
         <script src="~/lib/DataTables-1.10.13/media/js/jquery.dataTables.js"></script>
         <script src="~/lib/DataTables-1.10.13/media/js/dataTables.bootstrap.js"></script>
         <script src="~/lib/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.js"></script>
@@ -644,15 +641,36 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
+
         </script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
 
+
         </script>
         <script src="~/lib/admin-lte/dist/js/app.min.js" asp-append-version="true"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+
+    <script>
+        //加入一个点击所有目录的load局部刷新的ajax操作 然后再看看pjax
+        $(function () {
+            $("#department")
+                .click(function () {
+                    $('li.active').removeClass('active');
+                    $(".content").load('/Department/Index');
+                    $(this).parent().addClass('active');
+                });
+            $("#employee")
+                .click(function () {
+                    $('li.active').removeClass('active');
+                    $(".content").load('/Employee/Index');
+                    $(this).parent().addClass('active');
+                });
+
+        });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

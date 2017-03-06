@@ -1,6 +1,9 @@
-﻿<div class="nav-tabs-custom">
+﻿@{
+    Layout = null;
+}
+<div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab_1" data-toggle="tab">部门信息</a></li>
+        <li class="active"><a href="#tab_1" data-toggle="tab">员工列表</a></li>
         <li><a href="#tab_2" data-toggle="tab">组织机构</a></li>
         <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
         @*<li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>*@
@@ -57,7 +60,6 @@
 </div>
 <!-- nav-tabs-custom -->
 
-@section Scripts{
     <script>
         $(function () {
             var dt = $("#example1")
@@ -100,4 +102,3 @@
         });
 
     </script>
-}
