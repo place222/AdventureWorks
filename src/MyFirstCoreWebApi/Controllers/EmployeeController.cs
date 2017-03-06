@@ -26,17 +26,13 @@ namespace MyFirstCoreWebApi.Controllers
 
         [Route("GetEmployeesByPage")]
         [HttpPost]
-        public async Task<BasePageDto<EmployeeDto>> GetEmployeesByPage([FromForm]BasePageInput input)
+        public async Task<BaseOutput<BasePageDto<EmployeeDto>>> GetEmployeesByPage([FromForm]BasePageInput input)
         {
-            try
-            {
-                return await _employeeService.GetEmployeesByPageAsync(input);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex.GetBaseException().Message);
-                throw;
-            }
+            var output = new BaseOutput<BasePageDto<EmployeeDto>>();
+
+            output.Data = await _employeeService.GetEmployeesByPageAsync(input);
+
+            return output;
         }
 
         //todo::没有拿取位置数据
@@ -54,6 +50,8 @@ namespace MyFirstCoreWebApi.Controllers
                 throw;
             }
         }
+
+
     }
 
 }

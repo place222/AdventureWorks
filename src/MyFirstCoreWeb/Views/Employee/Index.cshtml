@@ -16,7 +16,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <td>员工编号</td>
@@ -24,8 +24,6 @@
                                 <td>员工状态</td>
                                 <td>姓名</td>
                                 <td>详情</td>
-                                <td>更新</td>
-                                <td>删除</td>
                             </tr>
                         </thead>
                     </table>
@@ -59,23 +57,67 @@
     <!-- /.tab-content -->
 </div>
 <!-- nav-tabs-custom -->
-
-    <script>
-        $(function () {
-            var dt = $("#example1")
-                .DataTable({
-                    ajax: {
+<script type="text/javascript">
+    var editor;
+    var table;
+    $(document)
+        .ready(function () {
+            editor = new $.fn.dataTable.Editor({
+                ajax: {
+                    create: {
+                        url: coreweb.servicesUrl + '/api/Department/AddDepartment',
                         type: 'POST',
-                        url: coreweb.servicesUrl + '/api/Employee/GetEmployeesByPage',
-                        data: function (d) {
-                            return { start: d.start, length: d.length };
-                        },
-                        dataSrc: function (json) {
-                            return json.data;
+                        data: function (data) {
+                            return { name: data.data[0]['name'], groupName: data.data[0]['groupName'] };
                         }
                     },
-                    serverSide: true,
-                    columns: [
+                    edit: {
+                        url: coreweb.servicesUrl + '/api/Department/UpdateDepartment',
+                        type: 'POST',
+                        data: function (data) {
+                            //这里看看如何拿到对象的属性
+                            var obj = {};
+                            for (var id in data.data) {
+                                obj.departmentID = id;
+                            }
+                            obj.name = data.data[id]['name'];
+                            obj.groupName = data.data[id]['groupName'];
+                            return obj;
+                        }
+                    },
+                    remove: {
+                        url: coreweb.servicesUrl + '/api/Department/DeleteDepartmentById?departmentId=_id_',
+                        type: 'POST'
+                    }
+                },
+                table: "#example",
+                idSrc: "departmentID",
+                fields: [
+                    { label: "名称:", name: "name" },
+                    { label: "组名称:", name: "groupName" }
+                ]
+            });
+            //自动规范一个返回 让table可以自动继续
+            editor.on('postSubmit',
+                function (e, json, data, action) {
+                    json.data = [{ departmentID: 1000, groupName: '测试', name: '测试吧', modifiedDate: '2017-03-03' }];
+                });
+
+            table = $('#example')
+                 .DataTable({
+                     dom: "Bfrtip",
+                     ajax: {
+                         type: 'POST',
+                         url: coreweb.servicesUrl + '/api/Employee/GetEmployeesByPage',
+                         data: function (d) {
+                             return { start: d.start, length: d.length, search: d.search.value };
+                         },
+                         dataSrc: function (data) {
+                             return data.data.data;
+                         }
+                     },
+                     serverSide: true,
+                     columns: [
                         { data: "id" },
                         { data: "hireDate" },
                         { data: 'currentFlag' },
@@ -86,19 +128,15 @@
                                 var a = '<a href="/Employee/Detail/' + data + '">详情</a>';
                                 return a;
                             }
-                        },
-                        {
-                            data: "id",
-                            render: function (data, type, row, meta) {
-                                var a = '<a href="#"  data-toggle="modal" data-target="#myModal" data-whatever="' +
-                                    data +
-                                    '">更新</a>';
-                                return a;
-                            }
-                        },
-                        { defaultContent: '<a href="#">删除</a>' }
-                    ]
-                });
+                        }
+                     ],
+                     select: true,
+                     buttons: [
+                         { extend: "create", editor: editor },
+                         { extend: "edit", editor: editor },
+                         { extend: "remove", editor: editor }
+                     ]
+                 });
         });
 
-    </script>
+</script>
