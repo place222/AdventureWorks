@@ -16,6 +16,9 @@ namespace DAL
             services.AddTransient<IProductModelRepository, ProductModelRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IPhoneNumberTypeRepository, PhoneNumberTypeRepository>();
+            services.AddTransient<IAddressTypeRepository, AddressTypeRepository>();
+            services.AddTransient<IContactTypeRepository, ContactTypeRepository>();
         }
     }
 }

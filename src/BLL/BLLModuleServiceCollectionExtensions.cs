@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using BLL.Basic;
+using BLL.Basic.Dtos;
 using BLL.Employees.Dtos;
 using DAL.DomainModels.Employees;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +34,7 @@ namespace BLL
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IDepartmentService, DepartmentService>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IBasicInfoService, BasicInfoService>();
 
             services.InitializeAutoMapper();
         }
@@ -79,6 +82,13 @@ namespace BLL
                 config.CreateMap<PageDomain<ProductDomain>, BasePageDto<ProductDto>>()
                     .ForMember(x => x.ITotalRecords, x => x.MapFrom(c => c.TotalRecord))
                     .ForMember(x => x.ITotalDisplayRecords, x => x.MapFrom(c => c.TotalRecord)).ReverseMap();
+
+                //电话类型
+                config.CreateMap<PhoneNumberType, EmployeePhoneDto>().ReverseMap();
+                //联系类型
+                config.CreateMap<ContactType, ContactTypeDto>().ReverseMap();
+                //地址类型
+                config.CreateMap<AddressType, AddressTypeDto>().ReverseMap();
             });
         }
     }
