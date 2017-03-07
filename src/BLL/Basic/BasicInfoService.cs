@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using BLL.Basic.Dtos;
+using Dapper;
+using DAL.Entities.Person;
 using DAL.Repositories;
 using Microsoft.Extensions.Options;
 using MyFirstCoreWeb.Models;
@@ -15,74 +19,153 @@ namespace BLL.Basic
         private readonly IContactTypeRepository _contactTypeRepository;
         private readonly IAddressTypeRepository _addressTypeRepository;
 
-        public ConnectionOptions Options { get; }
 
-        public BasicInfoService(IPhoneNumberTypeRepository phoneNumberTypeRepository, IContactTypeRepository contactTypeRepository, IAddressTypeRepository addressTypeRepository, IOptions<ConnectionOptions> options)
+        public BasicInfoService(IPhoneNumberTypeRepository phoneNumberTypeRepository, IContactTypeRepository contactTypeRepository, IAddressTypeRepository addressTypeRepository)
         {
             _phoneNumberTypeRepository = phoneNumberTypeRepository;
             _contactTypeRepository = contactTypeRepository;
             _addressTypeRepository = addressTypeRepository;
-            Options = options.Value;
         }
 
-        public Task<IEnumerable<PhoneNumberTypeDto>> GetPhoneNumberTypeAsync()
+        /// <summary>
+        /// 获得电话类型
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<PhoneNumberTypeDto>> GetPhoneNumberTypeAsync()
         {
-            throw new NotImplementedException();
+            var list = await _phoneNumberTypeRepository.GetPhoneNumberTypeAsync();
+
+            return Mapper.Map<IEnumerable<PhoneNumberTypeDto>>(list);
         }
 
-        public Task<IEnumerable<ContactTypeDto>> GetContactTypeAsync()
+        /// <summary>
+        /// 增加电话类型
+        /// </summary>
+        /// <param name="phoneNumberType"></param>
+        /// <returns></returns>
+        public async Task AddPhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<PhoneNumberType>(phoneNumberType);
+
+            await _phoneNumberTypeRepository.AddPhoneNumberTypeAsync(entity);
         }
 
-        public Task<IEnumerable<AddressTypeDto>> GetAddressTypeAsync()
+        /// <summary>
+        /// 修改电话类型
+        /// </summary>
+        /// <param name="phoneNumberType"></param>
+        /// <returns></returns>
+        public async Task UpdatePhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<PhoneNumberType>(phoneNumberType);
+
+            await _phoneNumberTypeRepository.UpdatePhoneNumberTypeAsync(entity);
         }
 
-        public Task AddPhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
+        /// <summary>
+        /// 删除电话类型
+        /// </summary>
+        /// <param name="phoneNumberType"></param>
+        /// <returns></returns>
+        public async Task DeletePhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<PhoneNumberType>(phoneNumberType);
+
+            await _phoneNumberTypeRepository.DeletePhoneNumberTypeAsync(entity);
         }
 
-        public Task UpdatePhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
+        /// <summary>
+        /// 获取联系类型列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<ContactTypeDto>> GetContactTypeAsync()
         {
-            throw new NotImplementedException();
+            var list = await _contactTypeRepository.GetContactTypeAsync();
+
+            return Mapper.Map<IEnumerable<ContactTypeDto>>(list);
         }
 
-        public Task DeletePhoneNumberTypeAsync(PhoneNumberTypeDto phoneNumberType)
+        /// <summary>
+        /// 增加联系类型
+        /// </summary>
+        /// <param name="contactType"></param>
+        /// <returns></returns>
+        public async Task AddContactTypeAsync(ContactTypeDto contactType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<ContactType>(contactType);
+
+            await _contactTypeRepository.AddContactTypeAsync(entity);
         }
 
-        public Task AddContactTypeAsync(ContactTypeDto contactType)
+        /// <summary>
+        /// 修改联系类型
+        /// </summary>
+        /// <param name="contactType"></param>
+        /// <returns></returns>
+        public async Task UpdateContactTypeAsync(ContactTypeDto contactType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<ContactType>(contactType);
+
+            await _contactTypeRepository.UpdateContactTypeAsync(entity);
         }
 
-        public Task UpdateContactTypeAsync(ContactTypeDto contactType)
+        /// <summary>
+        /// 删除联系类型
+        /// </summary>
+        /// <param name="contactType"></param>
+        /// <returns></returns>
+        public async Task DeleteContactTypeAsync(ContactTypeDto contactType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<ContactType>(contactType);
+
+            await _contactTypeRepository.DeleteContactTypeAsync(entity);
         }
 
-        public Task DeleteContactTypeAsync(ContactTypeDto contactType)
+        /// <summary>
+        /// 获取地址类型
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<AddressTypeDto>> GetAddressTypeAsync()
         {
-            throw new NotImplementedException();
+            var list = await _addressTypeRepository.GetAddressTypeAsync();
+
+            return Mapper.Map<IEnumerable<AddressTypeDto>>(list);
         }
 
-        public Task AddAddressTypeAsync(AddressTypeDto addressType)
+        /// <summary>
+        /// 增加地址类型
+        /// </summary>
+        /// <param name="addressType"></param>
+        /// <returns></returns>
+        public async Task AddAddressTypeAsync(AddressTypeDto addressType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<AddressType>(addressType);
+
+            await _addressTypeRepository.AddAddressTypeAsync(entity);
         }
 
-        public Task UpdateAddressTypeAsync(AddressTypeDto addressType)
+        /// <summary>
+        /// 修改地址类型
+        /// </summary>
+        /// <param name="addressType"></param>
+        /// <returns></returns>
+        public async Task UpdateAddressTypeAsync(AddressTypeDto addressType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<AddressType>(addressType);
+
+            await _addressTypeRepository.UpdateAddressTypeAsync(entity);
         }
 
-        public Task DeleteAddressTypeAsync(AddressTypeDto addressType)
+        /// <summary>
+        /// 删除地址类型
+        /// </summary>
+        /// <param name="addressType"></param>
+        /// <returns></returns>
+        public async Task DeleteAddressTypeAsync(AddressTypeDto addressType)
         {
-            throw new NotImplementedException();
+            var entity = Mapper.Map<AddressType>(addressType);
+
+            await _addressTypeRepository.DeleteAddressTypeAsync(entity);
         }
     }
 }

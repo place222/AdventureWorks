@@ -116,6 +116,13 @@ namespace DAL.Repositories
                     FROM Person.PersonPhone JOIN Person.PhoneNumberType 
                     ON PhoneNumberType.PhoneNumberTypeID = PersonPhone.PhoneNumberTypeID
                     WHERE BusinessEntityID = @id;";
+            sql += @"SELECT BusinessEntityID ,
+                           BusinessEntityContact.ContactTypeID ,
+                           PersonID ,
+                           Name 
+                    FROM Person.BusinessEntityContact
+                    JOIN Person.ContactType ON ContactType.ContactTypeID = BusinessEntityContact.ContactTypeID
+                    WHERE BusinessEntityID = @id;";
             var p = new DynamicParameters();
             p.Add("@id", employeeId, DbType.Int32);
             using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
@@ -125,7 +132,8 @@ namespace DAL.Repositories
                     model.EmployeeInfo = await multi.ReadFirstOrDefaultAsync<EmployeeInfoDomain>();
                     model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
                     model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();
-                    //TODO::还有联系方式映射 和 电话
+                    model.EmployeePhones = await multi.ReadAsync<EmployeePhoneDomain>();
+                    model.EmployeeContacts = await multi.ReadAsync<EmployeeContactDomain>();
                 }
             }
             return model;

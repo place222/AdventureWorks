@@ -27,6 +27,7 @@ namespace MyFirstCoreWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetPhoneNumberType")]
+        [HttpPost]
         public async Task<BaseOutput<IEnumerable<PhoneNumberTypeDto>>> GetPhoneNumberType()
         {
             var output = new BaseOutput<IEnumerable<PhoneNumberTypeDto>>();
@@ -42,7 +43,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="phoneNumberType"></param>
         /// <returns></returns>
         [Route("AddPhoneNumberType")]
-        public async Task<BaseOutput> AddPhoneNumberType(PhoneNumberTypeDto phoneNumberType)
+        [HttpPost]
+        public async Task<BaseOutput> AddPhoneNumberType([FromBody]PhoneNumberTypeDto phoneNumberType)
         {
             await _basicInfoService.AddPhoneNumberTypeAsync(phoneNumberType);
 
@@ -55,7 +57,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="phoneNumberType"></param>
         /// <returns></returns>
         [Route("UpdatePhoneNumberType")]
-        public async Task<BaseOutput> UpdatePhoneNumberType(PhoneNumberTypeDto phoneNumberType)
+        [HttpPost]
+        public async Task<BaseOutput> UpdatePhoneNumberType([FromBody]PhoneNumberTypeDto phoneNumberType)
         {
             await _basicInfoService.UpdatePhoneNumberTypeAsync(phoneNumberType);
 
@@ -68,7 +71,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="phoneNumberType"></param>
         /// <returns></returns>
         [Route("DeletePhoneNumberType")]
-        public async Task<BaseOutput> DeletePhoneNumberType(PhoneNumberTypeDto phoneNumberType)
+        [HttpPost]
+        public async Task<BaseOutput> DeletePhoneNumberType([FromBody]PhoneNumberTypeDto phoneNumberType)
         {
             await _basicInfoService.DeletePhoneNumberTypeAsync(phoneNumberType);
 
@@ -80,6 +84,7 @@ namespace MyFirstCoreWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetContactType")]
+        [HttpPost]
         public async Task<BaseOutput<IEnumerable<ContactTypeDto>>> GetContactType()
         {
             var output = new BaseOutput<IEnumerable<ContactTypeDto>>();
@@ -95,7 +100,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="contactType"></param>
         /// <returns></returns>
         [Route("AddContactType")]
-        public async Task<BaseOutput> AddContactType(ContactTypeDto contactType)
+        [HttpPost]
+        public async Task<BaseOutput> AddContactType([FromBody]ContactTypeDto contactType)
         {
             await _basicInfoService.AddContactTypeAsync(contactType);
 
@@ -108,7 +114,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="contactType"></param>
         /// <returns></returns>
         [Route("UpdateContactType")]
-        public async Task<BaseOutput> UpdateContactType(ContactTypeDto contactType)
+        [HttpPost]
+        public async Task<BaseOutput> UpdateContactType([FromBody]ContactTypeDto contactType)
         {
             await _basicInfoService.UpdateContactTypeAsync(contactType);
 
@@ -121,7 +128,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="contactType"></param>
         /// <returns></returns>
         [Route("DeleteContactType")]
-        public async Task<BaseOutput> DeleteContactType(ContactTypeDto contactType)
+        [HttpPost]
+        public async Task<BaseOutput> DeleteContactType([FromBody]ContactTypeDto contactType)
         {
             await _basicInfoService.DeleteContactTypeAsync(contactType);
 
@@ -132,6 +140,7 @@ namespace MyFirstCoreWebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetAddressType")]
+        [HttpPost]
         public async Task<BaseOutput<IEnumerable<AddressTypeDto>>> GetAddressType()
         {
             var output = new BaseOutput<IEnumerable<AddressTypeDto>>();
@@ -147,7 +156,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="addressType"></param>
         /// <returns></returns>
         [Route("AddAddressType")]
-        public async Task<BaseOutput> AddAddressType(AddressTypeDto addressType)
+        [HttpPost]
+        public async Task<BaseOutput> AddAddressType([FromBody]AddressTypeDto addressType)
         {
             await _basicInfoService.AddAddressTypeAsync(addressType);
 
@@ -160,7 +170,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="addressType"></param>
         /// <returns></returns>
         [Route("UpdateAddressType")]
-        public async Task<BaseOutput> UpdateAddressType(AddressTypeDto addressType)
+        [HttpPost]
+        public async Task<BaseOutput> UpdateAddressType([FromBody]AddressTypeDto addressType)
         {
             await _basicInfoService.UpdateAddressTypeAsync(addressType);
             
@@ -173,7 +184,8 @@ namespace MyFirstCoreWebApi.Controllers
         /// <param name="addressType"></param>
         /// <returns></returns>
         [Route("DeleteAddressType")]
-        public async Task<BaseOutput> DeleteAddressType(AddressTypeDto addressType)
+        [HttpPost]
+        public async Task<BaseOutput> DeleteAddressType([FromBody]AddressTypeDto addressType)
         {
             await _basicInfoService.DeleteAddressTypeAsync(addressType);
 
