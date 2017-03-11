@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{77E99F2D-78EC-402A-B6B4-9F8987633982}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84FF1663-EEA8-4A44-90FF-49619134420E}"
+	ProjectSection(SolutionItems) = preProject
+		业务描述.txt = 业务描述.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "src\DAL\DAL.csproj", "{9FEB33AB-A07A-4E44-ACD0-070DA3E8547B}"
 EndProject
