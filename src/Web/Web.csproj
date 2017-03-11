@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <UserSecretsId>aspnet-Web-a74c1b31-3723-492f-b2aa-cd2dd0a0f1b2</UserSecretsId>
-    <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>aspnet-Web-94fee63f-442a-44dc-8818-491d36073171</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -33,10 +32,6 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj" />
-    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
 </Project>

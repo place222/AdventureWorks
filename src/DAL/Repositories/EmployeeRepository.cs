@@ -85,7 +85,7 @@ namespace DAL.Repositories
                         FROM Person.Person JOIN HumanResources.Employee 
                         ON Employee.BusinessEntityID = Person.BusinessEntityID 
                         WHERE Employee.BusinessEntityID = @id;";
-            sql += @"SELECT * FROM Person.EmailAddress WHERE BusinessEntityID=@id;";
+            sql += @"SELECT BusinessEntityID,EmailAddressID,EmailAddress,ModifiedDate FROM Person.EmailAddress WHERE BusinessEntityID=@id;";
             sql += @"SELECT AddressLine1 ,
                            AddressLine2 ,
                            City,

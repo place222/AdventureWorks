@@ -5,10 +5,6 @@
     "bootstrap": "3.3.7",
     "jquery": "2.2.0",
     "jquery-validation": "1.14.0",
-    "jquery-validation-unobtrusive": "3.2.6",
-    "AdminLTE": "admin-lte#v2.4.0-alpha",
-    "iCheck": "1.0.2",
-    "font-awesome": "font-awsome#v4.7.0",
-    "Ionicons": "ionicons#v2.0.1"
+    "jquery-validation-unobtrusive": "3.2.6"
   }
 }
