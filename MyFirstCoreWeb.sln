@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0A689F08-1AE1-4984-AFCD-F116A6B623B1}"
 	ProjectSection(SolutionItems) = preProject
@@ -9,21 +9,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0A689F08-1AE
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BEA23CE-770F-4677-B2C0-96D542962A98}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyFirstCoreWeb", "src\MyFirstCoreWeb\MyFirstCoreWeb.xproj", "{4314457D-6054-443B-B55B-B1087980301F}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DAL", "src\DAL\DAL.xproj", "{67241C5C-7F70-455D-A862-2D7C485BACBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E2414D25-6C63-4AF6-976F-DB611971D780}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DAL.Test", "DAL.Test\DAL.Test.xproj", "{CD91A8A4-976E-4923-AB49-EF7B986A1ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstCoreWeb", "src\MyFirstCoreWeb\MyFirstCoreWeb.csproj", "{4314457D-6054-443B-B55B-B1087980301F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyFirstCoreWebApi", "src\MyFirstCoreWebApi\MyFirstCoreWebApi.xproj", "{65C231B4-61E4-4649-8B5A-B84C37E12940}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "src\DAL\DAL.csproj", "{67241C5C-7F70-455D-A862-2D7C485BACBB}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BLL", "src\BLL\BLL.xproj", "{0AE7CAD3-7F94-4FF5-B684-43E425FC2FDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL.Test", "DAL.Test\DAL.Test.csproj", "{CD91A8A4-976E-4923-AB49-EF7B986A1ECC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyFirstCoreWebApi", "src\MyFirstCoreWebApi\MyFirstCoreWebApi.csproj", "{65C231B4-61E4-4649-8B5A-B84C37E12940}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "src\BLL\BLL.csproj", "{0AE7CAD3-7F94-4FF5-B684-43E425FC2FDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
