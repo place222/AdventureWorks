@@ -9,7 +9,7 @@ using DAL.DomainModels;
 using DAL.DomainModels.Departments;
 using DAL.Entities.HumanResources;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Repositories
 {

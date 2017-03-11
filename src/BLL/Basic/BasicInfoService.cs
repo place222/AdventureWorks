@@ -9,7 +9,7 @@ using Dapper;
 using DAL.Entities.Person;
 using DAL.Repositories;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace BLL.Basic
 {

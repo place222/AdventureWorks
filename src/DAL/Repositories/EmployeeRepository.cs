@@ -11,7 +11,7 @@ using DAL.Entities.HumanResources;
 using DAL.Entities.Person;
 using DAL.Identity;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Repositories
 {

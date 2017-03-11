@@ -9,7 +9,7 @@ using DAL.DomainModels;
 using DAL.DomainModels.ProductModels;
 using DAL.Entities.Production;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Repositories
 {

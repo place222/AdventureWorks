@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Identity
 {

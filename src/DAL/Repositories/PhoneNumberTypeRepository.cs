@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DAL.Entities.Person;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Repositories
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 using DAL.DomainModels.Categories;
 using Microsoft.Extensions.Options;
-using MyFirstCoreWeb.Models;
+using DAL.Models;
 
 namespace DAL.Repositories
 {

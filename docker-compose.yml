@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  webapi:
+    image: webapi
+    build:
+      context: ./src/Webapi
+      dockerfile: Dockerfile
+
+  web:
+    image: web
+    build:
+      context: ./src/Web
+      dockerfile: Dockerfile
