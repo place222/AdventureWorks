@@ -89,7 +89,7 @@ namespace DAL.Repositories
             sql += @"SELECT AddressLine1 ,
                            AddressLine2 ,
                            City,
-                            SpatialLocation,
+                           SpatialLocation,
 	                       PostalCode , 
                            StateProvince.StateProvinceID,
 	                       StateProvinceCode,
@@ -130,7 +130,7 @@ namespace DAL.Repositories
                 using (var multi = await conn.QueryMultipleAsync(sql, p))
                 {
                     model.EmployeeInfo = await multi.ReadFirstOrDefaultAsync<EmployeeInfoDomain>();
-                    model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
+                    //model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
                     model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();
                     model.EmployeePhones = await multi.ReadAsync<EmployeePhoneDomain>();
                     model.EmployeeContacts = await multi.ReadAsync<EmployeeContactDomain>();
