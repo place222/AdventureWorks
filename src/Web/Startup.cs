@@ -12,6 +12,14 @@ using Microsoft.Extensions.Logging;
 using Web.Data;
 using Web.Models;
 using Web.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using DAL.Identity;
+using Microsoft.AspNetCore.Http;
+using DAL.Models;
+using BLL;
+using Microsoft.AspNetCore.Mvc;
+using DAL.Options;
 
 namespace Web
 {
@@ -42,16 +50,67 @@ namespace Web
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            // Services used by identity
+            services.AddAuthentication(options =>
+            {
+                // This is the Default value for ExternalCookieAuthenticationScheme
+                options.SignInScheme = new IdentityCookieOptions().ExternalCookieAuthenticationScheme;
+            });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            // Hosting doesn't add IHttpContextAccessor by default
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Identity services
+            services.TryAddSingleton<IdentityMarkerService>();
+            services.TryAddScoped<IUserValidator<User>, UserValidator<User>>();
+            services.TryAddScoped<IPasswordValidator<User>, PasswordValidator<User>>();
+            services.TryAddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            services.TryAddScoped<ILookupNormalizer, LookupNormalizer>(); //没有用默认的 转变大写方式
+            services.TryAddScoped<IRoleValidator<User>, RoleValidator<User>>();
+            // No interface for the error describer so we can add errors without rev'ing the interface
+            services.TryAddScoped<IdentityErrorDescriber>();
+            services.TryAddScoped<ISecurityStampValidator, SecurityStampValidator<User>>();
+            services.TryAddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory<User, Role>>();
+            services.TryAddScoped<UserManager<User>, UserManager<User>>();
+            services.TryAddScoped<SignInManager<User>, SignInManager<User>>();
+            services.TryAddScoped<RoleManager<Role>, RoleManager<Role>>();
+            services.TryAddScoped<IUserStore<User>, DAL.Identity.UserStore>();
+            services.TryAddScoped<IRoleStore<Role>, RoleStore>();
+
+            services.AddOptions();
+            services.Configure<ConnectionOptions>(Configuration.GetSection("ConnectionStrings"));
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddDefaultTokenProviders();
 
             services.AddMvc();
-
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            //服务
+            services.AddBLLServices();
+
+            //identity的配置
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 6;
+            });
+            //mvc配置
+            services.Configure<MvcOptions>(options =>
+            {
+            });
+            //mvc视图配置
+            services.Configure<MvcViewOptions>(options =>
+            {
+
+            });
+            //授权配置
+            services.AddAuthorization(optioins =>
+            {
+
+            });
+            //短信
+            services.Configure<AuthMessageSMSSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

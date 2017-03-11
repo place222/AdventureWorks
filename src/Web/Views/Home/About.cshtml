@@ -1,7 +1,89 @@
-﻿@{
-    ViewData["Title"] = "About";
-}
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
+﻿@*<table id="example" class="table table-bordered table-striped" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>组别</th>
+            <th>修改时间</th>
+        </tr>
+    </thead>
 
-<p>Use this area to provide additional information.</p>
+</table>
+@section Scripts{
+    <script type="text/javascript">
+        var editor;
+        var table;
+        $(document)
+            .ready(function () {
+                editor = new $.fn.dataTable.Editor({
+                    ajax: {
+                        create: {
+                            url: coreweb.servicesUrl + '/api/Department/AddDepartment',
+                            type: 'POST',
+                            data: function (data) {
+                                return { name: data.data[0]['name'], groupName: data.data[0]['groupName'] };
+                            }
+                        },
+                        edit: {
+                            url: coreweb.servicesUrl + '/api/Department/UpdateDepartment',
+                            type: 'POST',
+                            data: function (data) {
+                                //这里看看如何拿到对象的属性
+                                var obj = {};
+                                for (var id in data.data) {
+                                    obj.departmentID = id;
+                                }
+                                obj.name = data.data[id]['name'];
+                                obj.groupName = data.data[id]['groupName'];
+                                return obj;
+                            }
+                        },
+                        remove: {
+                            url: coreweb.servicesUrl + '/api/Department/DeleteDepartmentById?departmentId=_id_',
+                            type: 'POST'
+                        }
+                    },
+                    table: "#example",
+                    idSrc: "departmentID",
+                    fields: [
+                        { label: "名称:", name: "name" },
+                        { label: "组名称:", name: "groupName" }
+                    ]
+                });
+                //自动规范一个返回 让table可以自动继续
+                editor.on('postSubmit',
+                    function (e, json, data, action) {
+                        json.data = [{ departmentID: 1000, groupName: '测试', name: '测试吧', modifiedDate: '2017-03-03' }];
+                    });
+
+                table = $('#example')
+                     .DataTable({
+                         dom: "Bfrtip",
+                         ajax: {
+                             type: 'POST',
+                             url: coreweb.servicesUrl + '/api/Department/GetDepartmentsByPage',
+                             data: function (d) {
+                                 return { start: d.start, length: d.length, search: d.search.value };
+                             },
+                             dataSrc: function (data) {
+                                 return data.data.data;
+                             }
+                         },
+                         serverSide: true,
+                         columns: [
+                             { data: 'departmentID' },
+                             { data: 'name' },
+                             { data: 'groupName' },
+                             { data: 'modifiedDate' }
+                         ],
+                         select: true,
+                         buttons: [
+                             { extend: "create", editor: editor },
+                             { extend: "edit", editor: editor },
+                             { extend: "remove", editor: editor }
+                         ]
+                     });
+            });
+
+    </script>
+}*@

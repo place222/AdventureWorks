@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab">员工列表</a></li>
+        <li><a href="#tab_2" data-toggle="tab">组织机构</a></li>
+        <li><a href="#tab_3" data-toggle="tab">Tab 3</a></li>
+        @*<li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>*@
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_1">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Data Table With Full Features</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>名称</th>
+                                <th>组别</th>
+                                <th>修改时间</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_2">
+            The European languages are members of the same family. Their separate existence is a myth.
+            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+            new common language would be desirable: one could refuse to pay expensive translators. To
+            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+            words. If several languages coalesce, the grammar of the resulting language is more simple
+            and regular than that of the individual languages.
+        </div>
+        <!-- /.tab-pane -->
+        <div class="tab-pane" id="tab_3">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+    <!-- /.tab-content -->
+</div>
+
+<script type="text/javascript">
+    var editor;
+    var table;
+    $(document)
+        .ready(function () {
+            editor = new $.fn.dataTable.Editor({
+                ajax: {
+                    create: {
+                        url: coreweb.servicesUrl + '/api/Department/AddDepartment',
+                        type: 'POST',
+                        data: function (data) {
+                            return { name: data.data[0]['name'], groupName: data.data[0]['groupName'] };
+                        }
+                    },
+                    edit: {
+                        url: coreweb.servicesUrl + '/api/Department/UpdateDepartment',
+                        type: 'POST',
+                        data: function (data) {
+                            //这里看看如何拿到对象的属性
+                            var obj = {};
+                            for (var id in data.data) {
+                                obj.departmentID = id;
+                            }
+                            obj.name = data.data[id]['name'];
+                            obj.groupName = data.data[id]['groupName'];
+                            return obj;
+                        }
+                    },
+                    remove: {
+                        url: coreweb.servicesUrl + '/api/Department/DeleteDepartmentById?departmentId=_id_',
+                        type: 'POST'
+                    }
+                },
+                table: "#example",
+                idSrc: "departmentID",
+                fields: [
+                    { label: "名称:", name: "name" },
+                    { label: "组名称:", name: "groupName" }
+                ]
+            });
+            //自动规范一个返回 让table可以自动继续
+            editor.on('postSubmit',
+                function (e, json, data, action) {
+                    json.data = [{ departmentID: 1000, groupName: '测试', name: '测试吧', modifiedDate: '2017-03-03' }];
+                });
+
+            table = $('#example')
+                 .DataTable({
+                     dom: "Bfrtip",
+                     ajax: {
+                         type: 'POST',
+                         url: coreweb.servicesUrl + '/api/Department/GetDepartmentsByPage',
+                         data: function (d) {
+                             return { start: d.start, length: d.length, search: d.search.value };
+                         },
+                         dataSrc: function (data) {
+                             return data.data.data;
+                         }
+                     },
+                     serverSide: true,
+                     columns: [
+                         { data: 'departmentID' },
+                         { data: 'name' },
+                         { data: 'groupName' },
+                         { data: 'modifiedDate' }
+                     ],
+                     select: true,
+                     buttons: [
+                         { extend: "create", editor: editor },
+                         { extend: "edit", editor: editor },
+                         { extend: "remove", editor: editor }
+                     ]
+                 });
+        });
+
+</script>
