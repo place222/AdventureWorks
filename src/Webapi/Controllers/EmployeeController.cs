@@ -37,7 +37,7 @@ namespace MyFirstCoreWebApi.Controllers
 
         //todo::没有拿取位置数据
         [Route("GetEmployeeDetailById")]
-        [HttpGet]
+        [HttpPost]
         public async Task<EmployeeDetailDto> GetEmployeeDetailById([FromQuery] int employeeId)
         {
             try

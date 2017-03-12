@@ -12,6 +12,7 @@ using BLL;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using NLog.Extensions.Logging;
 
 namespace Webapi
 {
@@ -63,6 +64,8 @@ namespace Webapi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddNLog();
+            loggerFactory.ConfigureNLog("nlog.config");
 
             if (env.IsDevelopment())
             {
