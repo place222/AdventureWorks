@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
-    <ProjectGuid>77e99f2d-78ec-402a-b6b4-9f8987633982</ProjectGuid>
+    <ProjectGuid>9e1e58a1-0b31-4972-a969-dc243e438061</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
     <DockerServiceUrl>http://localhost:{ServicePort}/api/values</DockerServiceUrl>
-    <DockerServiceName>adventurework.webapi</DockerServiceName>
+    <DockerServiceName>webapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.ci.build.yml" />

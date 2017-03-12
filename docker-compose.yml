@@ -1,3 +1,8 @@
 version: '2'
 
 services:
+  webapi:
+    image: webapi
+    build:
+      context: ./src/Webapi
+      dockerfile: Dockerfile
