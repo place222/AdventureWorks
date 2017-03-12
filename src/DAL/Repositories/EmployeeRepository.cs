@@ -89,17 +89,16 @@ namespace DAL.Repositories
             sql += @"SELECT AddressLine1 ,
                            AddressLine2 ,
                            City,
-                           SpatialLocation,
-	                       PostalCode , 
+                        PostalCode , 
                            StateProvince.StateProvinceID,
-	                       StateProvinceCode,
-	                       StateProvince.Name AS StateProvinceName,
-	                       IsOnlyStateProvinceFlag,
-	                       TerritoryID,
-	                       AddressType.AddressTypeID,
+                        StateProvinceCode,
+                        StateProvince.Name AS StateProvinceName,
+                        IsOnlyStateProvinceFlag,
+                        TerritoryID,
+                        AddressType.AddressTypeID,
                            AddressType.Name AS AddressTypeName,
-	                       CountryRegion.CountryRegionCode,
-	                       CountryRegion.Name AS CountryRegionName
+                        CountryRegion.CountryRegionCode,
+                        CountryRegion.Name AS CountryRegionName
                     FROM Person.Address 
                     JOIN Person.BusinessEntityAddress 
                     ON BusinessEntityAddress.AddressID = Address.AddressID
@@ -127,7 +126,8 @@ namespace DAL.Repositories
             p.Add("@id", employeeId, DbType.Int32);
             using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
-                using(var multi = await conn.QueryMultipleAsync(sql, p)){
+                using (var multi = await conn.QueryMultipleAsync(sql, p))
+                {
                     model.EmployeeInfo = await multi.ReadFirstOrDefaultAsync<EmployeeInfoDomain>();
                     model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
                     model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();

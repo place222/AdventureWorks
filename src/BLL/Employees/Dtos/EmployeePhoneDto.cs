@@ -7,5 +7,8 @@ namespace BLL.Employees.Dtos
 {
     public class EmployeePhoneDto
     {
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public int PhoneNumberType { get; set; }
     }
 }
