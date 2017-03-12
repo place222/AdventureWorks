@@ -40,7 +40,7 @@ namespace DAL.Repositories
             {
                 using (var multi = await conn.QueryMultipleAsync(sql + countSql, p))
                 {
-                    model.Data = (await multi.ReadAsync<Department>()).ToList();
+                    model.Data = await multi.ReadAsync<Department>();
                     model.TotalRecord = await multi.ReadFirstOrDefaultAsync<int>();
                 }
             }

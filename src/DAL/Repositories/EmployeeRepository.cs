@@ -127,10 +127,9 @@ namespace DAL.Repositories
             p.Add("@id", employeeId, DbType.Int32);
             using (var conn = new SqlConnection(_connectionOptions.Value.AdventureWorkConnection))
             {
-                using (var multi = await conn.QueryMultipleAsync(sql, p))
-                {
+                using(var multi = await conn.QueryMultipleAsync(sql, p)){
                     model.EmployeeInfo = await multi.ReadFirstOrDefaultAsync<EmployeeInfoDomain>();
-                    //model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
+                    model.EmployeeEmailAddresses = await multi.ReadAsync<EmailAddresses>();
                     model.EmployeeAddresses = await multi.ReadAsync<EmployeeAddressDomain>();
                     model.EmployeePhones = await multi.ReadAsync<EmployeePhoneDomain>();
                     model.EmployeeContacts = await multi.ReadAsync<EmployeeContactDomain>();
