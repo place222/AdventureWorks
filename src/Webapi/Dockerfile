@@ -1,4 +1,4 @@
-#docker���������ļ�
+
 FROM microsoft/aspnetcore:1.1
 ARG source
 WORKDIR /app
