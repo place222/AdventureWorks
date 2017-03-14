@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
@@ -25,10 +25,16 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Api", "src\Sales.Api\Sales.Api.csproj", "{34FDF00F-750A-48D2-9194-209217BCFDC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanResource", "src\HumanResource\HumanResource.csproj", "{C774970D-2884-4B14-A07B-0B63ED2D61B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9FEB33AB-A07A-4E44-ACD0-070DA3E8547B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,6 +64,18 @@ Global
 		{34FDF00F-750A-48D2-9194-209217BCFDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34FDF00F-750A-48D2-9194-209217BCFDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34FDF00F-750A-48D2-9194-209217BCFDC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|x64.ActiveCfg = Debug|x64
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|x64.Build.0 = Debug|x64
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|x86.ActiveCfg = Debug|x86
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Debug|x86.Build.0 = Debug|x86
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|x64.ActiveCfg = Release|x64
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|x64.Build.0 = Release|x64
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|x86.ActiveCfg = Release|x86
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +87,6 @@ Global
 		{3B4460B2-E4C7-4251-8718-C84DE9F4E1B3} = {84FF1663-EEA8-4A44-90FF-49619134420E}
 		{F75170D9-9145-4CCC-90EB-671DCFC375AD} = {6C62E73E-D91D-442C-BE8A-0AF168CFCE64}
 		{34FDF00F-750A-48D2-9194-209217BCFDC8} = {84FF1663-EEA8-4A44-90FF-49619134420E}
+		{C774970D-2884-4B14-A07B-0B63ED2D61B7} = {84FF1663-EEA8-4A44-90FF-49619134420E}
 	EndGlobalSection
 EndGlobal

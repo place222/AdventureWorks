@@ -1,7 +1,9 @@
-#docker´´½¨¾µÏñÎÄ¼ş
+#dockerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 FROM microsoft/aspnetcore:1.1
 ARG source
 WORKDIR /app
 EXPOSE 80
 COPY ${source:-obj/Docker/publish} .
+#æ‰“å°ä¸€ä¸‹copyè¿›å»çš„æ–‡ä»¶
+RUN dir WORKDIR
 ENTRYPOINT ["dotnet", "Webapi.dll"]
